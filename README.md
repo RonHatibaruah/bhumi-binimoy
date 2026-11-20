@@ -104,10 +104,12 @@ See [CLOUDFLARE_DEPLOYMENT.md](CLOUDFLARE_DEPLOYMENT.md) for step-by-step dashbo
 
 ---
 
-## 📄 Official Submission Documents
+## 📄 Official Submission Documents & Text Versions
 
-- **Proposal Document:** [NESFIC_D50_Proposal_Ron_Hatibaruah.pdf](NESFIC_D50_Proposal_Ron_Hatibaruah.pdf) (12 Fields • 1.40 MB)
-- **Proof of Work & Solution Evidence Dossier:** [NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.pdf](NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.pdf) (7 Pages • 2.75 MB)
+- **Proposal Document (PDF):** [NESFIC_D50_Proposal_Ron_Hatibaruah.pdf](NESFIC_D50_Proposal_Ron_Hatibaruah.pdf) (12 Fields • 1.40 MB)
+- **Proof of Work & Solution Evidence Dossier (PDF):** [NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.pdf](NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.pdf) (7 Pages • 2.75 MB)
+- **Proposal Plain Text (Copy-Paste Ready):** [NESFIC_D50_Proposal_Ron_Hatibaruah.txt](NESFIC_D50_Proposal_Ron_Hatibaruah.txt) (Clean text formatted for online portal form textareas)
+- **Proof of Work Plain Text (Copy-Paste Ready):** [NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.txt](NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.txt) (Complete plain-text dossier with aligned ASCII tables)
 - **Proposal Markdown Contents:** [proposal_contents.md](proposal_contents.md)
 - **Proof of Work Markdown Dossier:** [proof_of_work_dossier.md](proof_of_work_dossier.md)
 
