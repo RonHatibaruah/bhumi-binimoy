@@ -91,7 +91,7 @@ BhumiSwasthya bridges the critical operational chasm between isolated tabular da
 4. If flagged (e.g., co-sharer heir deficit), the portal explains the discrepancy in plain Assamese/English and provides a 1-click link to initiate proactive reconciliation under Mission Basundhara *before* signing any sale deed.
 
 ### Working Prototype & Proof of Work Evidence
-A fully functional, high-fidelity proof-of-work prototype has been developed and verified on `http://localhost:5173/` using authentic Assam revenue data models:
+A fully functional, high-fidelity proof-of-work prototype has been developed and verified live at `https://bhumi-swasthya.pages.dev/` using authentic Assam revenue data models:
 - **Interactive Cadastral GIS Engine:** Renders cadastral parcel polygons over OpenStreetMap with dynamic color-coding by health grade. Displays dashed red conflict borders on overlapping geometries (validated on Dag 103 & 104 in Jatia, Dispur).
 - **Automated Rule Evaluation Core:** Demonstrates sub-second execution of all 7 consistency checks, composite score derivation, and dual-system (Dharitree vs Bhudakshya) comparative tables.
 - **Field Reporting Module:** Captures measured ground BKL, boundary pillar integrity status, and GPS coordinates.

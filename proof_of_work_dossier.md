@@ -3,7 +3,7 @@
 **Submission Category:** NESFIC 2026 (Stream 1) — Problem Statement **NESFIC-D-50**  
 **Challenge Owners:** Revenue & Disaster Management Department, Government of Assam  
 **Lead Innovator & Applicant:** Ron Hatibaruah  
-**Live Working Prototype:** `http://localhost:5173/`  
+**Live Working Prototype:** `https://bhumi-swasthya.pages.dev/`  
 **Document Type:** Proof of Work, Prototype Evidence, Wireframes & Benchmark Test Report
 
 ---

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Map, ClipboardList, UserCheck, Activity, Building2, BookOpen } from 'lucide-react';
+import { ShieldCheck, Map, ClipboardList, UserCheck, Activity, Building2, BookOpen, Sliders } from 'lucide-react';
 
 export type ActiveTab = 'dashboard' | 'gis-map' | 'field-verification' | 'citizen-portal';
 
@@ -11,6 +11,7 @@ interface NavbarProps {
   totalRecords: number;
   criticalCount: number;
   onOpenTutorial: () => void;
+  onOpenAdmin: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -20,7 +21,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   setSelectedCircle,
   totalRecords,
   criticalCount,
-  onOpenTutorial
+  onOpenTutorial,
+  onOpenAdmin
 }) => {
   return (
     <header className="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50 shadow-md">
@@ -84,6 +86,21 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <BookOpen className="w-3.5 h-3.5" />
               <span>Tutorial & Guide</span>
+            </a>
+
+            {/* Admin Console Link / Button */}
+            <a
+              href="#admin"
+              onClick={(e) => {
+                e.preventDefault();
+                onOpenAdmin();
+              }}
+              className="flex items-center space-x-1.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-xs transition-all ring-1 ring-amber-400/30"
+              title="Super Admin Console: Statutory Rule Calibration, Revenue Officer Directory, Data Sync Sentry & Audit Logs"
+              aria-label="Open Admin Control Console"
+            >
+              <Sliders className="w-3.5 h-3.5" />
+              <span>Admin Console</span>
             </a>
 
             {/* Circle Filter */}

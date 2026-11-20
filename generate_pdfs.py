@@ -585,7 +585,7 @@ def build_proposal_pdf(output_path):
     meta_data = [
         [safe_paragraph("<b>Problem Statement ID:</b> NESFIC-D-50 (Stream 1)", meta_style), safe_paragraph("<b>Challenge Owner:</b> Rev. & Disaster Mgmt Dept, Assam", meta_style)],
         [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Platform:</b> Assam Startup (AISF) NESFIC 2026", meta_style)],
-        [safe_paragraph("<b>Live Demo:</b> http://localhost:5173/", meta_style), safe_paragraph("<b>Status:</b> Working Prototype Verified", meta_style)]
+        [safe_paragraph("<b>Live Demo:</b> https://bhumi-swasthya.pages.dev/", meta_style), safe_paragraph("<b>Status:</b> Working Prototype Verified", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[240, 264])
     t_meta.setStyle(TableStyle([
@@ -699,7 +699,7 @@ def build_proof_of_work_pdf(output_path):
     meta_data = [
         [safe_paragraph("<b>Challenge ID:</b> NESFIC-D-50 (Stream 1)", meta_style), safe_paragraph("<b>Department:</b> Rev. & Disaster Mgmt, Assam", meta_style)],
         [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Format:</b> Solution Evidence (PDF < 10 MB)", meta_style)],
-        [safe_paragraph("<b>Live Prototype:</b> http://localhost:5173/", meta_style), safe_paragraph("<b>Verification Status:</b> Fully Built & Tested", meta_style)]
+        [safe_paragraph("<b>Live Prototype:</b> https://bhumi-swasthya.pages.dev/", meta_style), safe_paragraph("<b>Verification Status:</b> Fully Built & Tested", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[240, 264])
     t_meta.setStyle(TableStyle([

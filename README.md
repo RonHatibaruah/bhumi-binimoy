@@ -1,11 +1,15 @@
 # BhumiSwasthya (ভূমি স্বাস্থ্য)
 ### Automated Land Records Health-Check & Cadastral Anomaly Detection System
 
+[![Live Demo](https://img.shields.io/badge/Live_Prototype-bhumi--swasthya.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://bhumi-swasthya.pages.dev/)
 [![Government of Assam](https://img.shields.io/badge/Government_of_Assam-Revenue_%26_Disaster_Management-064e3b?style=for-the-badge)](https://landrecords.assam.gov.in/)
 [![Challenge ID](https://img.shields.io/badge/NESFIC_2026-Stream_1_--_NESFIC--D--50-0284c7?style=for-the-badge)](https://startup.assam.gov.in/)
-[![Cloudflare Ready](https://img.shields.io/badge/Deploy_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://pages.cloudflare.com/)
+[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://bhumi-swasthya.pages.dev/)
 [![React 18](https://img.shields.io/badge/Frontend-React_18_%7C_TypeScript_%7C_Tailwind-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![Leaflet GIS](https://img.shields.io/badge/Geospatial-Leaflet_%7C_PostGIS-199900?style=for-the-badge&logo=leaflet)](https://leafletjs.com/)
+
+> 🌐 **Live Interactive Prototype:** **[https://bhumi-swasthya.pages.dev/](https://bhumi-swasthya.pages.dev/)**  
+> Explore executive analytics, live cadastral map inspector with polygon overlays, Lat Mandal field verification queue, and citizen land health certificate generator.
 
 ---
 
