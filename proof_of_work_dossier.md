@@ -19,6 +19,7 @@ The prototype successfully demonstrates:
 4. **Interactive Cadastral WebGIS overlay** featuring dynamic polygon styling and visual conflict demarcations for boundary overlaps.
 5. **Mobile-first field verification queue** for Lat Mandals with GPS coordinate lock and ground measurement logging.
 6. **Citizen-facing self-check portal** generating downloadable, printable official Land Record Health Cards (`ভূমি স্বাস্থ্য প্ৰমাণপত্ৰ`).
+7. **Super Admin Command Console (`#admin`)** enabling real-time calibration of statutory rule engine tolerances, officer workload rebalancing, dual-system ingestion telemetry, and immutable SHA-256 compliance logs.
 
 ---
 

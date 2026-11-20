@@ -96,6 +96,7 @@ A fully functional, high-fidelity proof-of-work prototype has been developed and
 - **Automated Rule Evaluation Core:** Demonstrates sub-second execution of all 7 consistency checks, composite score derivation, and dual-system (Dharitree vs Bhudakshya) comparative tables.
 - **Field Reporting Module:** Captures measured ground BKL, boundary pillar integrity status, and GPS coordinates.
 - **Citizen Portal & Health Certificate:** Generates downloadable, printable Land Record Health Cards with QR verification tokens.
+- **Super Admin Command Console (`#admin`):** Real-time calibration of statutory rule engine tolerances, officer workload rebalancing, dual-system ingestion sentry, and immutable SHA-256 compliance logs.
 
 *A comprehensive Proof of Work Dossier containing high-resolution system wireframes, architectural schematics, and test benchmark results is attached in the accompanying PDF submission.*
 
