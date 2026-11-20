@@ -9,7 +9,7 @@
 [![Leaflet GIS](https://img.shields.io/badge/Geospatial-Leaflet_%7C_PostGIS-199900?style=for-the-badge&logo=leaflet)](https://leafletjs.com/)
 
 > 🌐 **Live Interactive Prototype:** **[https://bhumi-swasthya.pages.dev/](https://bhumi-swasthya.pages.dev/)**  
-> Explore executive analytics, live cadastral map inspector with polygon overlays, Lat Mandal field verification queue, and citizen land health certificate generator.
+> Explore executive analytics, live cadastral map inspector with polygon overlays, Lat Mandal field verification queue, citizen land health certificate generator, and the **Super Admin Command Console (`#admin`)**.
 
 ---
 
@@ -25,6 +25,7 @@ Traditional land administration is **reactive**: errors in textual Jamabandi rec
 3. **Composite Land Health Score (LHS 0–100):** Triages parcels into 4 actionable risk tiers (Grade A Clean to Grade D Critical).
 4. **Targeted Lat Mandal PWA:** Auto-dispatches field survey work-orders with sub-meter RTK GNSS coordinate locking and offline SQLite synchronization.
 5. **Citizen Self-Check Portal:** Issues tamper-proof, verifiable digital Land Health Certificates with cryptographic SHA-256 QR tokens, enabling **pre-emptive 72-hour fast-track mutations** under **Mission Basundhara 3.0**.
+6. **Super Admin Command Console:** Real-time algorithmic calibration of statutory discrepancy tolerances, officer & Lat Mandal provisioning, dual-system ingestion telemetry, and immutable SHA-256 audit trails.
 
 ---
 

@@ -4,20 +4,21 @@ import { ExecutiveDashboard } from './components/ExecutiveDashboard';
 import { CadastralMapViewer } from './components/CadastralMapViewer';
 import { FieldVerificationPortal } from './components/FieldVerificationPortal';
 import { CitizenHealthPortal } from './components/CitizenHealthPortal';
+import { AdminDashboard } from './components/AdminDashboard';
 import { RecordDetailModal } from './components/RecordDetailModal';
 import { TutorialModal } from './components/TutorialModal';
-import { AdminPanelModal } from './components/AdminPanelModal';
 import { initialLandRecords, initialVerificationTasks } from './data/mockAssamLandData';
 import { LandRecord, VerificationTask } from './types/landRecords';
+import { RuleEngineConfig, DEFAULT_RULE_CONFIG, auditLandRecord } from './services/healthCheckEngine';
 
 export function App() {
   const [records, setRecords] = useState<LandRecord[]>(initialLandRecords);
   const [tasks, setTasks] = useState<VerificationTask[]>(initialVerificationTasks);
+  const [ruleConfig, setRuleConfig] = useState<RuleEngineConfig>(DEFAULT_RULE_CONFIG);
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
   const [selectedCircle, setSelectedCircle] = useState<string>('ALL');
   const [inspectingRecord, setInspectingRecord] = useState<LandRecord | null>(null);
   const [isTutorialOpen, setIsTutorialOpen] = useState<boolean>(false);
-  const [isAdminOpen, setIsAdminOpen] = useState<boolean>(false);
 
   // Synchronize hash with activeTab for SEO, deep-linking and browser navigation
   React.useEffect(() => {
@@ -27,8 +28,8 @@ export function App() {
       else if (hash === 'gis-map' || hash === 'cadastral-map') setActiveTab('gis-map');
       else if (hash === 'field-verification' || hash === 'lat-mandal') setActiveTab('field-verification');
       else if (hash === 'citizen-portal' || hash === 'citizen-health') setActiveTab('citizen-portal');
+      else if (hash === 'admin' || hash === 'admin-console') setActiveTab('admin');
       else if (hash === 'tutorial') setIsTutorialOpen(true);
-      else if (hash === 'admin') setIsAdminOpen(true);
     };
 
     syncTabFromHash();
@@ -108,6 +109,24 @@ export function App() {
     }
   };
 
+  // Recalibrate statutory rules and recalculate LHS across all parcels dynamically
+  const handleUpdateRuleConfig = (newConfig: RuleEngineConfig) => {
+    setRuleConfig(newConfig);
+    setRecords(prev => prev.map(rec => ({
+      ...rec,
+      healthReport: auditLandRecord(rec, newConfig)
+    })));
+  };
+
+  // Reassign task between Lat Mandals
+  const handleReassignTask = (taskId: string, newMandal: string) => {
+    setTasks(prev => prev.map(t => t.id === taskId ? { ...t, assignedMandal: newMandal } : t));
+    const task = tasks.find(t => t.id === taskId);
+    if (task) {
+      setRecords(prev => prev.map(r => (r.id === task.dagId || r.dagNumber === task.dagNumber) ? { ...r, assignedMandal: newMandal } : r));
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900">
       
@@ -122,10 +141,6 @@ export function App() {
         onOpenTutorial={() => {
           setIsTutorialOpen(true);
           window.history.pushState(null, '', '#tutorial');
-        }}
-        onOpenAdmin={() => {
-          setIsAdminOpen(true);
-          window.history.pushState(null, '', '#admin');
         }}
       />
 
@@ -163,6 +178,16 @@ export function App() {
           />
         )}
 
+        {activeTab === 'admin' && (
+          <AdminDashboard
+            records={records}
+            tasks={tasks}
+            ruleConfig={ruleConfig}
+            onUpdateRuleConfig={handleUpdateRuleConfig}
+            onReassignTask={handleReassignTask}
+          />
+        )}
+
       </main>
 
       {/* Detail Inspection Modal */}
@@ -180,14 +205,6 @@ export function App() {
           setActiveTab(tab);
           setIsTutorialOpen(false);
         }}
-      />
-
-      {/* Super Admin Control Console */}
-      <AdminPanelModal
-        isOpen={isAdminOpen}
-        onClose={() => setIsAdminOpen(false)}
-        records={records}
-        tasks={tasks}
       />
 
       {/* Footer */}

@@ -27,11 +27,44 @@ export function formatBKL(bkl: BKL): string {
   return `${bkl.bigha}B - ${bkl.katha}K - ${bkl.lesa}L`;
 }
 
+export interface RuleEngineConfig {
+  areaTolerancePercent: number; // default 5.0
+  overlapPenalty: number; // default 35
+  varianceMinorPenalty: number; // default 20
+  varianceCriticalPenalty: number; // default 35
+  zeroRevenuePenalty: number; // default 15
+  shareDeficitPenalty: number; // default 25
+  tribalBeltEnforcement: boolean; // default true
+  tribalBeltPenalty: number; // default 35
+  ecologicalEncroachmentPenalty: number; // default 40
+  missingKycPenalty: number; // default 5
+  unresolvedEncumbrancePenalty: number; // default 15
+  snappingToleranceMeters: number; // default 0.15
+}
+
+export const DEFAULT_RULE_CONFIG: RuleEngineConfig = {
+  areaTolerancePercent: 5.0,
+  overlapPenalty: 35,
+  varianceMinorPenalty: 20,
+  varianceCriticalPenalty: 35,
+  zeroRevenuePenalty: 15,
+  shareDeficitPenalty: 25,
+  tribalBeltEnforcement: true,
+  tribalBeltPenalty: 35,
+  ecologicalEncroachmentPenalty: 40,
+  missingKycPenalty: 5,
+  unresolvedEncumbrancePenalty: 15,
+  snappingToleranceMeters: 0.15
+};
+
 /**
  * Executes the full deterministic health check audit on a land record.
  * Implements strict rules adhering to the Assam Land and Revenue Regulation, 1886.
  */
-export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): HealthReport {
+export function auditLandRecord(
+  record: Omit<LandRecord, 'healthReport'>,
+  config: RuleEngineConfig = DEFAULT_RULE_CONFIG
+): HealthReport {
   const anomalies: Anomaly[] = [];
   const now = new Date().toISOString().split('T')[0];
 
@@ -41,7 +74,7 @@ export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): Healt
   const areaDiffSqM = Math.abs(cadSqM - textSqM);
   const variancePercentage = textSqM > 0 ? (areaDiffSqM / textSqM) * 100 : 100;
 
-  if (variancePercentage > 5.0) {
+  if (variancePercentage > config.areaTolerancePercent) {
     const isCritical = variancePercentage > 15.0;
     anomalies.push({
       id: `ANOM-${record.dagNumber}-1`,
@@ -49,7 +82,7 @@ export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): Healt
       title: 'Cadastral GIS Area Mismatch',
       description: `Bhudakshya polygon area (${cadSqM.toFixed(1)} sq.m / ${formatBKL(record.cadastralAreaBKL)}) deviates from Jamabandi recorded area (${textSqM.toFixed(1)} sq.m / ${formatBKL(record.jamabandiArea)}) by ${variancePercentage.toFixed(1)}%.`,
       severity: isCritical ? 'CRITICAL' : 'HIGH',
-      penaltyPoints: isCritical ? 35 : 20,
+      penaltyPoints: isCritical ? config.varianceCriticalPenalty : config.varianceMinorPenalty,
       suggestedAction: 'Deploy Lat Mandal for GPS ground survey verification and map rectification under Rule 48.',
       detectedAt: now
     });
@@ -63,7 +96,7 @@ export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): Healt
       title: 'Cadastral Polygon Overlap Detected',
       description: `Dag ${record.dagNumber} geometry overlaps with adjacent Dag ${record.overlapsWithDag} by intersecting polygon boundaries.`,
       severity: 'CRITICAL',
-      penaltyPoints: 35,
+      penaltyPoints: config.overlapPenalty,
       suggestedAction: 'Require boundary settlement and demarcation hearing before Circle Officer.',
       detectedAt: now
     });
@@ -79,7 +112,7 @@ export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): Healt
         title: 'Zero Land Revenue Assessment',
         description: `Privately held ${record.landClass} under ${record.pattaType} shows ₹0.00 annual revenue assessment. Potential revenue leakage or missing reassessment.`,
         severity: 'MEDIUM',
-        penaltyPoints: 15,
+        penaltyPoints: config.zeroRevenuePenalty,
         suggestedAction: 'Generate revised Touzi revenue assessment demand note for the Mouzadar.',
         detectedAt: now
       });
@@ -96,14 +129,14 @@ export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): Healt
       title: 'Pattadar Ownership Share Drift',
       description: `Aggregate recorded pattadar shares equal ${totalShares}%, violating unity of title (${isOver ? 'Exceeds 100%' : 'Deficit under 100% - missing unallocated heirs'}).`,
       severity: 'HIGH',
-      penaltyPoints: 25,
+      penaltyPoints: config.shareDeficitPenalty,
       suggestedAction: 'Initiate suo-motu field mutation or partition case under Section 97 of ALRR.',
       detectedAt: now
     });
   }
 
   // RULE 5: Tribal Belt / Protected Class Violations (Assam Land & Revenue Regulation Chapter X)
-  if (record.inTribalBelt) {
+  if (record.inTribalBelt && config.tribalBeltEnforcement) {
     const nonTribalHolders = record.pattadars.filter(p => !p.isTribalProtected);
     if (nonTribalHolders.length > 0) {
       anomalies.push({
@@ -112,7 +145,7 @@ export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): Healt
         title: 'Chapter X Tribal Belt Transfer Flag',
         description: `Parcel is situated in a notified Tribal Belt/Block, but holds non-protected landholder(s): ${nonTribalHolders.map(h => h.name).join(', ')}.`,
         severity: 'CRITICAL',
-        penaltyPoints: 35,
+        penaltyPoints: config.tribalBeltPenalty,
         suggestedAction: 'Flag for legal inquiry under Deputy Commissioner / Chapter X Revenue Court.',
         detectedAt: now
       });
@@ -127,7 +160,7 @@ export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): Healt
       title: 'Ecological / Common Land Patta Irregularity',
       description: `Myadi private patta issued on designated ${record.landClass}. High risk of ecological encroachment or irregular settlement.`,
       severity: 'CRITICAL',
-      penaltyPoints: 40,
+      penaltyPoints: config.ecologicalEncroachmentPenalty,
       suggestedAction: 'Notify Revenue Circle Officer for de-reservation scrutiny.',
       detectedAt: now
     });
@@ -144,7 +177,7 @@ export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): Healt
       title: 'Incomplete Landholder Identification (KYC)',
       description: `${missingKycPattadars.length} Pattadar(s) have missing guardian name or unlinked digital identity records.`,
       severity: 'LOW',
-      penaltyPoints: 5 * missingKycPattadars.length,
+      penaltyPoints: config.missingKycPenalty * missingKycPattadars.length,
       suggestedAction: 'Trigger automated SMS reminder for Mission Basundhara self-authentication.',
       detectedAt: now
     });
@@ -164,7 +197,7 @@ export function auditLandRecord(record: Omit<LandRecord, 'healthReport'>): Healt
       title: 'Active Encumbrance / Legal Restriction Note',
       description: `Unredeemed historical notation detected: "${unresolvedNotes[0]}".`,
       severity: 'MEDIUM',
-      penaltyPoints: 15,
+      penaltyPoints: config.unresolvedEncumbrancePenalty,
       suggestedAction: 'Cross-reference with e-Panjeeyan and Bank NOC repository for digital release.',
       detectedAt: now
     });
