@@ -10,6 +10,7 @@ import { TutorialModal } from './components/TutorialModal';
 import { initialLandRecords, initialVerificationTasks } from './data/mockAssamLandData';
 import { LandRecord, VerificationTask } from './types/landRecords';
 import { RuleEngineConfig, DEFAULT_RULE_CONFIG, auditLandRecord } from './services/healthCheckEngine';
+import { Mail } from 'lucide-react';
 
 export function App() {
   const [records, setRecords] = useState<LandRecord[]>(initialLandRecords);
@@ -209,7 +210,7 @@ export function App() {
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 border-t border-slate-800 text-xs py-5 px-4 mt-auto">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
           <div>
             <div className="font-semibold text-slate-200">
               BhumiSwasthya (ভূমি স্বাস্থ্য) • Assam Land Records Health Check & Anomaly Detection System
@@ -219,9 +220,20 @@ export function App() {
             </div>
           </div>
           
-          <div className="text-right">
+          <div className="text-center sm:text-right flex flex-col sm:items-end">
             <div className="font-semibold text-slate-200">
               Copyright © 2026 Ron Hatibaruah. All Rights Reserved.
+            </div>
+            <div className="text-[11px] text-slate-300 mt-1 flex items-center justify-center sm:justify-end gap-1.5">
+              <span className="text-slate-400">Visitor Contact & Feedback:</span>
+              <a
+                href="mailto:ron.hatibaruah@gmail.com"
+                className="text-emerald-400 hover:text-emerald-300 font-medium underline decoration-emerald-500/40 hover:decoration-emerald-400 transition-colors inline-flex items-center gap-1 font-mono"
+                title="Send email to Ron Hatibaruah (ron.hatibaruah@gmail.com)"
+              >
+                <Mail className="w-3.5 h-3.5 shrink-0" />
+                <span>ron.hatibaruah@gmail.com</span>
+              </a>
             </div>
             <div className="text-[11px] text-slate-500 mt-0.5">
               Assam Innovation & Startup Foundation (AISF) Initiative

@@ -116,6 +116,7 @@ See [CLOUDFLARE_DEPLOYMENT.md](CLOUDFLARE_DEPLOYMENT.md) for step-by-step dashbo
 ## 👤 Applicant Attribution & Lead
 
 - **Lead Innovator & Solutions Architect:** **Ron Hatibaruah**
+- **Email / Inquiries:** [ron.hatibaruah@gmail.com](mailto:ron.hatibaruah@gmail.com)
 - **Challenge ID:** NESFIC-D-50 (Stream 1)
 - **Platform:** North East Startup Festival & Innovation Conclave (NESFIC 2026) / Assam Innovation & Startup Foundation (AISF)
 - **Challenge Owner:** Revenue & Disaster Management Department, Government of Assam
