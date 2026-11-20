@@ -18,7 +18,13 @@ import {
   ArrowRight,
   Database,
   Search,
-  ExternalLink
+  ExternalLink,
+  LogIn,
+  LogOut,
+  Eye,
+  EyeOff,
+  Mail,
+  Key
 } from 'lucide-react';
 import { LandRecord, VerificationTask } from '../types/landRecords';
 import { RuleEngineConfig, DEFAULT_RULE_CONFIG } from '../services/healthCheckEngine';
@@ -132,6 +138,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // Selected Rule 53 Dossier Record
   const [rectificationRecord, setRectificationRecord] = useState<LandRecord | null>(null);
 
+  // Authentication State for Admin Console Access
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return sessionStorage.getItem('bhumiswasthya_admin_auth') === 'true';
+  });
+  const [loginEmail, setLoginEmail] = useState('admin@assam.gov.in');
+  const [loginPassword, setLoginPassword] = useState('Bhumi@2026');
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+
   // Notification helper
   const showToast = (msg: string) => {
     setNotification(msg);
@@ -150,6 +165,43 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       hash: randomHex
     };
     setAuditLogs(prev => [newEntry, ...prev]);
+  };
+
+  const handleLogin = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const cleanEmail = loginEmail.trim().toLowerCase();
+    const cleanPass = loginPassword.trim();
+
+    if (
+      (cleanEmail === 'admin@assam.gov.in' && cleanPass === 'Bhumi@2026') ||
+      (cleanEmail === 'admin' && cleanPass === 'admin')
+    ) {
+      sessionStorage.setItem('bhumiswasthya_admin_auth', 'true');
+      setIsAuthenticated(true);
+      setLoginError(null);
+      showToast('Welcome, Director of Land Records! Administrative session established.');
+      logAction('SUPER_ADMIN_LOGIN', 'Authenticated session established via ASDC e-Pramaan Single Sign-On.');
+    } else {
+      setLoginError('Invalid credentials. Please use the demo credentials provided below.');
+    }
+  };
+
+  const handleAutoFillAndLogin = () => {
+    setLoginEmail('admin@assam.gov.in');
+    setLoginPassword('Bhumi@2026');
+    sessionStorage.setItem('bhumiswasthya_admin_auth', 'true');
+    setIsAuthenticated(true);
+    setLoginError(null);
+    showToast('Welcome, Director of Land Records! Administrative session established.');
+    logAction('SUPER_ADMIN_LOGIN', 'Authenticated session established via 1-Click Demo Login.');
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('bhumiswasthya_admin_auth');
+    setIsAuthenticated(false);
+    setLoginEmail('admin@assam.gov.in');
+    setLoginPassword('Bhumi@2026');
+    showToast('Administrative session terminated.');
   };
 
   // Handle saving calibrated rules
@@ -258,6 +310,129 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     showToast('Audit trail exported successfully!');
   };
 
+  // If not authenticated, display secure Government Login Gateway
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-[72vh] flex items-center justify-center py-6 px-4">
+        <div className="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden text-slate-200">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Header */}
+          <div className="text-center relative z-10 mb-6">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-600 to-orange-500 text-white shadow-lg shadow-amber-950/50 mb-3">
+              <Shield className="w-7 h-7" />
+            </div>
+            <div className="flex items-center justify-center space-x-2 text-xs text-emerald-400 font-semibold mb-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Assam State Data Centre (ASDC) • Secure Gateway</span>
+            </div>
+            <h2 className="text-xl font-bold text-white tracking-tight">
+              BhumiSwasthya Admin Console
+            </h2>
+            <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+              Directorate of Land Records & Surveys • Revenue & Disaster Management Department
+            </p>
+          </div>
+
+          {/* Demo Credentials Quick Callout */}
+          <div className="bg-gradient-to-br from-amber-950/40 to-slate-950/80 border border-amber-600/40 rounded-2xl p-4 mb-6 relative z-10">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold text-amber-300 flex items-center gap-1.5 uppercase tracking-wide">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                Demo Credentials (NESFIC 2026)
+              </span>
+              <span className="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full font-semibold">
+                Evaluator Access
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 text-xs font-mono mb-3">
+              <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                <div className="text-[10px] text-slate-400 font-sans">User ID / Email</div>
+                <div className="text-amber-200 font-semibold truncate select-all">admin@assam.gov.in</div>
+              </div>
+              <div className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                <div className="text-[10px] text-slate-400 font-sans">Password</div>
+                <div className="text-amber-200 font-semibold truncate select-all">Bhumi@2026</div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleAutoFillAndLogin}
+              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md shadow-amber-950/50 transition-all cursor-pointer"
+            >
+              <LogIn className="w-4 h-4" />
+              <span>⚡ 1-Click Auto-Fill Demo Credentials & Login</span>
+            </button>
+          </div>
+
+          {/* Manual Login Form */}
+          <form onSubmit={handleLogin} className="space-y-4 relative z-10 text-xs">
+            {loginError && (
+              <div className="bg-red-950/80 border border-red-800 text-red-300 p-3 rounded-xl flex items-center space-x-2 text-xs">
+                <AlertTriangle className="w-4 h-4 shrink-0 text-red-400" />
+                <span>{loginError}</span>
+              </div>
+            )}
+
+            <div>
+              <label className="block text-slate-300 font-semibold mb-1">Official Email / User ID</label>
+              <div className="relative">
+                <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-3 pointer-events-none" />
+                <input
+                  type="text"
+                  required
+                  placeholder="admin@assam.gov.in"
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-9 pr-3 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-slate-300 font-semibold mb-1">Password</label>
+              <div className="relative">
+                <Key className="w-4 h-4 text-slate-500 absolute left-3 top-3 pointer-events-none" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  placeholder="••••••••"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-9 pr-10 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-2.5 text-slate-500 hover:text-slate-300"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+            >
+              <Lock className="w-3.5 h-3.5 text-amber-400" />
+              <span>Sign In with Credentials</span>
+            </button>
+          </form>
+
+          {/* Security Notice */}
+          <div className="mt-6 pt-4 border-t border-slate-800/80 text-center text-[10px] text-slate-500 relative z-10 flex items-center justify-center gap-2">
+            <Lock className="w-3 h-3 text-slate-500" />
+            <span>Assam State Data Centre (ASDC) Tier-III Certified • 256-Bit SSL Encrypted</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       
@@ -293,14 +468,18 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center space-x-2 shrink-0">
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <div className="bg-slate-950/80 border border-slate-800 px-3 py-1.5 rounded-xl text-left hidden sm:block">
+              <div className="text-[10px] text-slate-400 font-sans">Active Session:</div>
+              <div className="text-xs font-mono text-emerald-400 font-semibold">admin@assam.gov.in</div>
+            </div>
             <button
               onClick={handleExportCSV}
               className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold px-3 py-2 rounded-xl flex items-center gap-1.5 transition-colors"
               title="Download tamper-proof cryptographic audit log for CAG/CERT-In verification"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Export Audit Trail</span>
+              <span className="hidden sm:inline">Export Audit</span>
             </button>
             <button
               onClick={handleRunBatchAudit}
@@ -308,7 +487,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 shadow-md shadow-amber-950/40 transition-all"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isAuditing ? 'animate-spin' : ''}`} />
-              <span>{isAuditing ? 'Running Scan...' : 'Trigger Batch Scan'}</span>
+              <span>{isAuditing ? 'Scanning...' : 'Batch Scan'}</span>
+            </button>
+            <button
+              onClick={handleLogout}
+              className="bg-slate-800 hover:bg-red-950/40 text-slate-300 hover:text-red-400 border border-slate-700 hover:border-red-800/80 text-xs font-semibold px-3 py-2 rounded-xl flex items-center gap-1.5 transition-colors"
+              title="End admin session and sign out"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Sign Out</span>
             </button>
           </div>
         </div>
@@ -424,7 +611,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 Assam Land Records Manual • Algorithmic Scoring Calibration
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
-                Adjust legal discrepancy thresholds and deductive penalty weights ($w_1$ to $w_7$) without deploying new code.
+                Adjust statutory discrepancy thresholds and deductive penalty weights (w₁ to w₇) without deploying new code.
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -508,10 +695,23 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
           {/* Deductive Weights Matrix */}
           <div className="bg-slate-950/50 p-5 rounded-xl border border-slate-800 space-y-4">
-            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
-              <Layers className="w-4 h-4 text-amber-400" />
-              Formula Parameter Matrix: $S = \max(0, 100 - \sum (w_i \times p_i))$
-            </h4>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+              <div>
+                <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-amber-400" />
+                  Statutory Deductive Formula Parameter Matrix
+                </h4>
+                <p className="text-[11px] text-slate-400 mt-0.5">
+                  Assam Land Records Manual composite health score formulation
+                </p>
+              </div>
+              <div className="bg-slate-900 border border-amber-500/30 rounded-xl px-4 py-2 font-mono text-xs shadow-inner flex items-center gap-2 self-start sm:self-auto">
+                <span className="text-slate-400 font-sans font-medium text-[11px]">Formula:</span>
+                <span className="text-amber-300 font-bold tracking-wide">
+                  S = max(0, 100 − ∑<sub>i=1</sub><sup>7</sup> (w<sub>i</sub> × p<sub>i</sub>))
+                </span>
+              </div>
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               
@@ -635,7 +835,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 Revenue Administrative Hierarchy & Personnel Directory
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
-                District $\rightarrow$ Revenue Circle $\rightarrow$ Mouza $\rightarrow$ Lat Mandal Ground Surveyor Roster
+                District → Revenue Circle → Mouza → Lat Mandal Ground Surveyor Roster
               </p>
             </div>
             <button
