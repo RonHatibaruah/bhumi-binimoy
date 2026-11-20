@@ -1,0 +1,180 @@
+import React, { useState, useMemo } from 'react';
+import { Navbar, ActiveTab } from './components/Navbar';
+import { ExecutiveDashboard } from './components/ExecutiveDashboard';
+import { CadastralMapViewer } from './components/CadastralMapViewer';
+import { FieldVerificationPortal } from './components/FieldVerificationPortal';
+import { CitizenHealthPortal } from './components/CitizenHealthPortal';
+import { RecordDetailModal } from './components/RecordDetailModal';
+import { TutorialModal } from './components/TutorialModal';
+import { initialLandRecords, initialVerificationTasks } from './data/mockAssamLandData';
+import { LandRecord, VerificationTask } from './types/landRecords';
+
+export function App() {
+  const [records, setRecords] = useState<LandRecord[]>(initialLandRecords);
+  const [tasks, setTasks] = useState<VerificationTask[]>(initialVerificationTasks);
+  const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
+  const [selectedCircle, setSelectedCircle] = useState<string>('ALL');
+  const [inspectingRecord, setInspectingRecord] = useState<LandRecord | null>(null);
+  const [isTutorialOpen, setIsTutorialOpen] = useState<boolean>(false);
+
+  // Filter records by selected circle
+  const filteredRecords = useMemo(() => {
+    if (selectedCircle === 'ALL') return records;
+    return records.filter(r => r.circle.toLowerCase() === selectedCircle.toLowerCase());
+  }, [records, selectedCircle]);
+
+  // Critical counts
+  const criticalCount = useMemo(() => {
+    return records.filter(r => r.healthReport.grade === 'GRADE_D').length;
+  }, [records]);
+
+  // Dispatch a record to Lat Mandal for field inspection
+  const handleDispatchToMandal = (record: LandRecord) => {
+    const existingTask = tasks.find(t => t.dagId === record.id);
+    if (existingTask) {
+      alert(`Task already assigned to Lat Mandal for Dag ${record.dagNumber}.`);
+      setActiveTab('field-verification');
+      return;
+    }
+
+    const newTask: VerificationTask = {
+      id: `TASK-2026-${String(tasks.length + 1).padStart(3, '0')}`,
+      dagId: record.id,
+      dagNumber: record.dagNumber,
+      pattaNumber: record.pattaNumber,
+      village: record.village,
+      circle: record.circle,
+      priority: record.healthReport.grade === 'GRADE_D' ? 'CRITICAL' : 'HIGH',
+      assignedMandal: record.circle === 'Sonapur' ? 'Hemen Saikia (LM-09)' : 'Biren Kalita (LM-04)',
+      anomaliesSummary: record.healthReport.anomalies.map(a => a.title),
+      status: 'ASSIGNED',
+      scheduledDate: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0]
+    };
+
+    setTasks(prev => [newTask, ...prev]);
+    setRecords(prev => prev.map(r => r.id === record.id ? { ...r, verificationStatus: 'ASSIGNED_TO_MANDAL' } : r));
+    alert(`Survey order generated! Dag ${record.dagNumber} dispatched to ${newTask.assignedMandal}.`);
+    setActiveTab('field-verification');
+  };
+
+  // Complete a verification task
+  const handleCompleteTask = (taskId: string, findings: any) => {
+    setTasks(prev => prev.map(t => {
+      if (t.id === taskId) {
+        return { ...t, status: 'COMPLETED', findings };
+      }
+      return t;
+    }));
+
+    // Update corresponding record
+    const task = tasks.find(t => t.id === taskId);
+    if (task) {
+      setRecords(prev => prev.map(r => {
+        if (r.id === task.dagId || r.dagNumber === task.dagNumber) {
+          return {
+            ...r,
+            verificationStatus: 'FIELD_INSPECTION_COMPLETED',
+            fieldNotes: findings.remarks
+          };
+        }
+        return r;
+      }));
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900">
+      
+      {/* Top Navigation */}
+      <Navbar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        selectedCircle={selectedCircle}
+        setSelectedCircle={setSelectedCircle}
+        totalRecords={records.length}
+        criticalCount={criticalCount}
+        onOpenTutorial={() => setIsTutorialOpen(true)}
+      />
+
+      {/* Main Content Area */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        
+        {activeTab === 'dashboard' && (
+          <ExecutiveDashboard
+            records={filteredRecords}
+            onSelectRecord={(r) => setInspectingRecord(r)}
+            onDispatchToMandal={handleDispatchToMandal}
+          />
+        )}
+
+        {activeTab === 'gis-map' && (
+          <CadastralMapViewer
+            records={filteredRecords}
+            onSelectRecord={(r) => setInspectingRecord(r)}
+            selectedRecordId={inspectingRecord?.id}
+          />
+        )}
+
+        {activeTab === 'field-verification' && (
+          <FieldVerificationPortal
+            tasks={tasks}
+            onCompleteTask={handleCompleteTask}
+            records={records}
+          />
+        )}
+
+        {activeTab === 'citizen-portal' && (
+          <CitizenHealthPortal
+            records={records}
+            onSelectRecord={(r) => setInspectingRecord(r)}
+          />
+        )}
+
+      </main>
+
+      {/* Detail Inspection Modal */}
+      <RecordDetailModal
+        record={inspectingRecord}
+        onClose={() => setInspectingRecord(null)}
+        onDispatchToMandal={handleDispatchToMandal}
+      />
+
+      {/* User Tutorial & Walkthrough Modal */}
+      <TutorialModal
+        isOpen={isTutorialOpen}
+        onClose={() => setIsTutorialOpen(false)}
+        onNavigateTab={(tab) => {
+          setActiveTab(tab);
+          setIsTutorialOpen(false);
+        }}
+      />
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-400 border-t border-slate-800 text-xs py-5 px-4 mt-auto">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+          <div>
+            <div className="font-semibold text-slate-200">
+              BhumiSwasthya (ভূমি স্বাস্থ্য) • Assam Land Records Health Check & Anomaly Detection System
+            </div>
+            <div className="text-[11px] text-slate-400 mt-0.5">
+              NESFIC 2026 Problem Statement NESFIC-D-50 | Revenue & Disaster Management Department, Assam
+            </div>
+          </div>
+          
+          <div className="text-right">
+            <div className="font-semibold text-slate-200">
+              Copyright © 2026 Ron Hatibaruah. All Rights Reserved.
+            </div>
+            <div className="text-[11px] text-slate-500 mt-0.5">
+              Assam Innovation & Startup Foundation (AISF) Initiative
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  );
+}
+
+export default App;
+
