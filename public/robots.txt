@@ -1,0 +1,6 @@
+# Robots.txt for BhumiSwasthya (Government of Assam Land Health System)
+User-agent: *
+Allow: /
+
+# Canonical Sitemap
+Sitemap: https://bhumi-swasthya.pages.dev/sitemap.xml

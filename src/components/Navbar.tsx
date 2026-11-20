@@ -72,14 +72,19 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex flex-wrap items-center gap-2">
             
             {/* Tutorial Link / Button */}
-            <button
-              onClick={onOpenTutorial}
+            <a
+              href="#tutorial"
+              onClick={(e) => {
+                e.preventDefault();
+                onOpenTutorial();
+              }}
               className="flex items-center space-x-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-xs transition-all ring-1 ring-emerald-400/30"
-              title="Learn what this app does and how to use it"
+              title="Learn what this app does, how to use it, and view the system architecture guide"
+              aria-label="Open Interactive Tutorial & System Guide"
             >
               <BookOpen className="w-3.5 h-3.5" />
               <span>Tutorial & Guide</span>
-            </button>
+            </a>
 
             {/* Circle Filter */}
             <div className="flex items-center space-x-1.5 bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700 text-xs">
@@ -88,6 +93,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 value={selectedCircle}
                 onChange={(e) => setSelectedCircle(e.target.value)}
                 className="bg-transparent text-slate-200 text-xs focus:outline-none cursor-pointer pr-1"
+                aria-label="Filter records by Assam Revenue Circle"
+                title="Select Assam Revenue Circle"
               >
                 <option value="ALL" className="bg-slate-900">All Revenue Circles</option>
                 <option value="Dispur" className="bg-slate-900">Dispur (Kamrup Metro)</option>
@@ -96,10 +103,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               </select>
             </div>
 
-            {/* Tab Buttons */}
-            <div className="inline-flex rounded-lg bg-slate-800 p-1 border border-slate-700">
-              <button
-                onClick={() => setActiveTab('dashboard')}
+            {/* Tab Links - SEO and GEO Friendly */}
+            <nav className="inline-flex rounded-lg bg-slate-800 p-1 border border-slate-700" aria-label="Main Application Views">
+              <a
+                href="#dashboard"
+                onClick={(e) => { e.preventDefault(); setActiveTab('dashboard'); }}
+                title="Executive Analytics & Cadastral Health Register Dashboard (Assam Revenue Circles)"
+                aria-label="View Executive Analytics Dashboard"
                 className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   activeTab === 'dashboard'
                     ? 'bg-emerald-600 text-white shadow-sm'
@@ -108,10 +118,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <Activity className="w-3.5 h-3.5" />
                 <span>Executive Analytics</span>
-              </button>
+              </a>
 
-              <button
-                onClick={() => setActiveTab('gis-map')}
+              <a
+                href="#gis-map"
+                onClick={(e) => { e.preventDefault(); setActiveTab('gis-map'); }}
+                title="Cadastral WebGIS Parcel Inspector & Overlap Conflict Viewer (Bhudakshya & Satellite)"
+                aria-label="View Cadastral WebGIS Parcel Map"
                 className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   activeTab === 'gis-map'
                     ? 'bg-emerald-600 text-white shadow-sm'
@@ -120,10 +133,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <Map className="w-3.5 h-3.5" />
                 <span>Cadastral GIS Map</span>
-              </button>
+              </a>
 
-              <button
-                onClick={() => setActiveTab('field-verification')}
+              <a
+                href="#field-verification"
+                onClick={(e) => { e.preventDefault(); setActiveTab('field-verification'); }}
+                title="Lat Mandal Field Verification Queue & Offline Ground-Truthing Roster"
+                aria-label="View Lat Mandal Field Queue"
                 className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   activeTab === 'field-verification'
                     ? 'bg-emerald-600 text-white shadow-sm'
@@ -132,10 +148,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <ClipboardList className="w-3.5 h-3.5" />
                 <span>Field Mandal Queue</span>
-              </button>
+              </a>
 
-              <button
-                onClick={() => setActiveTab('citizen-portal')}
+              <a
+                href="#citizen-portal"
+                onClick={(e) => { e.preventDefault(); setActiveTab('citizen-portal'); }}
+                title="Citizen Land Health Card Self-Check Portal & Pre-Emptive Mutation Fast-Track"
+                aria-label="View Citizen Land Health Portal"
                 className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   activeTab === 'citizen-portal'
                     ? 'bg-amber-600 text-white shadow-sm'
@@ -144,8 +163,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <UserCheck className="w-3.5 h-3.5" />
                 <span>Citizen Self-Check</span>
-              </button>
-            </div>
+              </a>
+            </nav>
 
           </div>
 

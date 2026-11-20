@@ -17,6 +17,29 @@ export function App() {
   const [inspectingRecord, setInspectingRecord] = useState<LandRecord | null>(null);
   const [isTutorialOpen, setIsTutorialOpen] = useState<boolean>(false);
 
+  // Synchronize hash with activeTab for SEO, deep-linking and browser navigation
+  React.useEffect(() => {
+    const syncTabFromHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'dashboard') setActiveTab('dashboard');
+      else if (hash === 'gis-map' || hash === 'cadastral-map') setActiveTab('gis-map');
+      else if (hash === 'field-verification' || hash === 'lat-mandal') setActiveTab('field-verification');
+      else if (hash === 'citizen-portal' || hash === 'citizen-health') setActiveTab('citizen-portal');
+      else if (hash === 'tutorial') setIsTutorialOpen(true);
+    };
+
+    syncTabFromHash();
+    window.addEventListener('hashchange', syncTabFromHash);
+    return () => window.removeEventListener('hashchange', syncTabFromHash);
+  }, []);
+
+  const handleTabSelect = (tab: ActiveTab) => {
+    setActiveTab(tab);
+    if (window.location.hash !== `#${tab}`) {
+      window.history.pushState(null, '', `#${tab}`);
+    }
+  };
+
   // Filter records by selected circle
   const filteredRecords = useMemo(() => {
     if (selectedCircle === 'ALL') return records;
@@ -88,12 +111,15 @@ export function App() {
       {/* Top Navigation */}
       <Navbar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={handleTabSelect}
         selectedCircle={selectedCircle}
         setSelectedCircle={setSelectedCircle}
         totalRecords={records.length}
         criticalCount={criticalCount}
-        onOpenTutorial={() => setIsTutorialOpen(true)}
+        onOpenTutorial={() => {
+          setIsTutorialOpen(true);
+          window.history.pushState(null, '', '#tutorial');
+        }}
       />
 
       {/* Main Content Area */}
