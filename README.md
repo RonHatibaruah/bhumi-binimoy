@@ -1,15 +1,18 @@
 # Assam Land Exchange • BhumiBinimoy (ভূমি বিনিময়)
 ### Government-Verified Cadastral Marketplace for Buying and Selling Land
 
-[![Live Demo](https://img.shields.io/badge/Live_Prototype-bhumi--swasthya.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://bhumi-swasthya.pages.dev/)
+[![Live Demo](https://img.shields.io/badge/Live_Prototype-bhumi--binimoy.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://bhumi-binimoy.pages.dev/)
 [![Government of Assam](https://img.shields.io/badge/Government_of_Assam-Revenue_%26_Disaster_Management-064e3b?style=for-the-badge)](https://landrecords.assam.gov.in/)
 [![Challenge ID](https://img.shields.io/badge/NESFIC_2026-Stream_1_--_NESFIC--D--52-0284c7?style=for-the-badge)](https://startup.assam.gov.in/nesfic26/problem-statements/nesfic-d-52)
-[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://bhumi-swasthya.pages.dev/)
-[![React 18](https://img.shields.io/badge/Frontend-React_18_%7C_TypeScript_%7C_Tailwind-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
+[![Cloudflare Live](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://bhumi-binimoy.pages.dev/)
+[![React 19](https://img.shields.io/badge/Frontend-React_19_%7C_TypeScript_%7C_Tailwind-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![Leaflet GIS](https://img.shields.io/badge/Geospatial-Leaflet_%7C_PostGIS-199900?style=for-the-badge&logo=leaflet)](https://leafletjs.com/)
 
-> 🌐 **Live Interactive Prototype:** **[https://bhumi-swasthya.pages.dev/](https://bhumi-swasthya.pages.dev/)**  
+> 🌐 **Live Interactive Prototype:** **[https://bhumi-binimoy.pages.dev/](https://bhumi-binimoy.pages.dev/)**  
 > Explore the Cadastral Marketplace Explorer, Buyer Due-Diligence Deal Room, Voluntary Landowner Listing Wizard, Assisted 5-Stage Conveyancing Pipeline, and the Revenue Department Super Admin Console.
+>
+> ⚡ **Edge Serverless API:** `https://bhumi-binimoy.pages.dev/api/health`  
+> 💻 **GitHub Repository:** [https://github.com/RonHatibaruah/bhumi-binimoy](https://github.com/RonHatibaruah/bhumi-binimoy)
 
 ---
 
