@@ -30,7 +30,9 @@ export type ListingStage =
   | 'OFFER_ACCEPTED'
   | 'SALE_NOC_IN_PROGRESS'
   | 'REGISTRATION_SCHEDULED'
-  | 'COMPLETED_MUTATED';
+  | 'COMPLETED_MUTATED'
+  | 'FLAGGED_DISCREPANCY'
+  | 'PAUSED';
 
 export interface PattadarInfo {
   id: string;

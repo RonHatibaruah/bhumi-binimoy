@@ -6,6 +6,7 @@ import { SellerListingPortal } from './components/SellerListingPortal';
 import { WorkflowTracker } from './components/WorkflowTracker';
 import { AdminConsole } from './components/AdminConsole';
 import { TutorialModal } from './components/TutorialModal';
+import { Footer } from './components/Footer';
 import { initialLandMarketplaceListings } from './data/mockAssamLandData';
 import { LandMarketplaceListing, BuyerOffer } from './types/landRecords';
 
@@ -38,6 +39,8 @@ export function App() {
     if (window.location.hash !== `#${tab}`) {
       window.history.pushState(null, '', `#${tab}`);
     }
+    // Scroll to top when changing tab
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Filter listings by selected circle
@@ -70,6 +73,19 @@ export function App() {
   const handleListingCreated = (newListing: LandMarketplaceListing) => {
     setListings(prev => [newListing, ...prev]);
     setSelectedListing(newListing);
+  };
+
+  // Admin moderation status updater
+  const handleUpdateListingStatus = (listingId: string, newStage: any) => {
+    setListings(prev => prev.map(item => {
+      if (item.id === listingId) {
+        return {
+          ...item,
+          stage: newStage
+        };
+      }
+      return item;
+    }));
   };
 
   return (
@@ -118,9 +134,15 @@ export function App() {
         )}
 
         {activeTab === 'admin-console' && (
-          <AdminConsole listings={listings} />
+          <AdminConsole 
+            listings={listings} 
+            onUpdateListingStatus={handleUpdateListingStatus}
+          />
         )}
       </main>
+
+      {/* Global Application Footer */}
+      <Footer onNavigateTab={handleTabSelect} />
 
       {/* Interactive Guide / Tutorial Modal */}
       <TutorialModal
