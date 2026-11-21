@@ -7,8 +7,10 @@ import {
   ArrowRightLeft, 
   ShieldCheck, 
   HelpCircle,
+  BookOpen,
   TrendingUp,
-  FileBadge
+  FileBadge,
+  Sparkles
 } from 'lucide-react';
 import { LandMarketplaceListing } from '../types/landRecords';
 import { formatINR } from '../services/marketplaceEngine';
@@ -47,13 +49,23 @@ export const Navbar: React.FC<NavbarProps> = ({
           <span className="text-slate-500">•</span>
           <span className="text-amber-400 font-semibold">NESFIC-D-52 Pilot Solution</span>
         </div>
-        <div className="flex items-center space-x-4">
-          <span className="text-slate-400 hidden sm:inline">Dharitree • Bhudakshya • e-Panjeeyan • e-Khajana</span>
-          <span className="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono">
+        
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={onOpenTutorial}
+            className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-700/60 text-[11px] font-medium transition-all hover:scale-105"
+            title="Read tutorial on what this platform is and how to use it"
+          >
+            <BookOpen className="w-3 h-3 text-emerald-400" />
+            <span>📖 Platform Guide & Tutorial</span>
+          </button>
+          
+          <span className="text-slate-500 hidden md:inline">•</span>
+          <span className="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono hidden sm:inline">
             {listings.length} Active Listings ({verifiedCount} Gold Verified)
           </span>
-          <span className="bg-slate-800 text-slate-300 px-2 py-0.5 rounded text-[11px] font-mono hidden md:inline">
-            Marketplace Volume: {formatINR(totalValuation)}
+          <span className="bg-slate-800 text-slate-300 px-2 py-0.5 rounded text-[11px] font-mono hidden lg:inline">
+            Vol: {formatINR(totalValuation)}
           </span>
         </div>
       </div>
@@ -79,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Action Tabs */}
+          {/* Action Tabs & Prominent Tutorial Link */}
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => setActiveTab('marketplace')}
@@ -141,13 +153,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>Dept Console</span>
             </button>
 
-            {/* Tutorial Button */}
+            {/* Prominent Header Tutorial Button */}
             <button
               onClick={onOpenTutorial}
-              title="Platform Guide & Architecture Walkthrough"
-              className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+              title="Platform Guide: What the application is and How to use it"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 hover:text-white border border-emerald-500/40 text-xs font-bold transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
             >
-              <HelpCircle className="w-4 h-4" />
+              <HelpCircle className="w-4 h-4 text-emerald-400" />
+              <span>Tutorial & Guide</span>
             </button>
           </div>
         </div>
