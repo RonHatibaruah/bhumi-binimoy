@@ -5,14 +5,15 @@
 **Problem Statement ID:** **NESFIC-D-52**  
 **Challenge Owners:** Revenue & Disaster Management Department, Government of Assam  
 **Lead Innovator & Applicant:** Ron Hatibaruah  
-**Live Working Prototype:** `https://bhumi-swasthya.pages.dev/` (Assam Land Exchange Edition)  
-**Document Type:** Empirical Proof of Work (PoW), Architecture Validation, Data Schemas & Performance Benchmarks
+**Live Working Prototype:** `https://bhumi-binimoy.pages.dev/`  
+**GitHub Repository:** `https://github.com/RonHatibaruah/bhumi-binimoy`  
+**Document Type:** Empirical Proof of Work (PoW), Architecture Validation, Data Schemas & Performance Benchmarks  
 
 ---
 
 ## 1. Executive Summary & Prototype Status
 
-In full alignment with the Assam Startup NESFIC 2026 Uniform Solution Proposal Requirements (USPR), this document provides verifiable **Proof of Work (PoW)**, architectural validation, and test benchmark results demonstrating a fully operational, high-fidelity software prototype of **BhumiBinimoy (Assam Land Exchange)**.
+In full alignment with the Assam Startup NESFIC 2026 Uniform Solution Proposal Requirements (USPR), this document provides verifiable **Proof of Work (PoW)**, architectural validation, and empirical benchmark results demonstrating a fully operational, high-fidelity software prototype of **BhumiBinimoy (Assam Land Exchange)**.
 
 The prototype proves that a government-facilitated digital land marketplace built directly upon Assam’s official cadastral map is technically viable, legally compliant, and immediately deployable.
 
@@ -20,7 +21,7 @@ The prototype proves that a government-facilitated digital land marketplace buil
 1. **Interactive Cadastral GIS Marketplace:** Renders georeferenced Dag polygons on Assam’s official cadastral sheets, allowing prospective buyers to visually discover parcels voluntarily listed by lawful owners.
 2. **Voluntary Seller Onboarding & Instant Verification:** Verifies lawful pattadar ownership in real time by cross-referencing Dag and Patta numbers against *Dharitree* Record of Rights (RoRs) and *Bhudakshya* spatial boundaries.
 3. **Strict Separation of Truth:** Enforces an uncompromisable demarcation between **Government-Verified Official Particulars** (immutable system records) and **Seller Representations** (asking price, photographs, development amenities).
-4. **Transparent Price Discovery & Zonal Value Benchmarking:** Compares seller asking prices directly against official Circle-level Zonal Rates ($₹/\text{Bigha}$), calculating a transparent Fair Value Index and projected statutory stamp duty/registration fees.
+4. **Transparent Price Discovery & Zonal Value Benchmarking:** Compares seller asking prices directly against official Circle-level Zonal Rates (Rs./Bigha), calculating a transparent Fair Value Index and projected statutory stamp duty/registration fees.
 5. **8-Point Automated Title Due-Diligence Ledger:** Computes real-time clearance for tenure type (Periodic vs. Annual Patta), area discrepancy, co-sharer partition balance, e-Khajana tax clearance, bank liens, court litigation injunctions, and Chapter X Tribal Belt transfer restrictions.
 6. **Assisted Conveyancing & Transaction Deal Room:** Manages structured buyer inquiries, Expressions of Interest (EOI), counter-offers, token escrow status, and automated pre-population of Land Sale NOCs for Circle Officer approval and *e-Panjeeyan* deed execution.
 7. **Statutory Integrity & Disclaimers:** Features watermarked due-diligence summaries and prominent statutory disclaimers ensuring compliance with the *Assam Land and Revenue Regulation (ALRR), 1886*.
@@ -30,58 +31,47 @@ The prototype proves that a government-facilitated digital land marketplace buil
 
 ## 2. Live System Architecture & Technical Pipeline
 
-```
-+─────────────────────────────────────────────────────────────────────────────────────────+
-|                                DATA FEDERATION GATEWAY                                  |
-|   • Dharitree Extracts (RoR / Jamabandi)       • Bhudakshya Cadastral GeoJSON Layers    |
-|   • e-Panjeeyan Registered Deed History        • Zonal Valuation Gazette Schedules      |
-|   • e-Khajana Annual Revenue Ledger            • Notified Tribal Belt / Block Polygons  |
-+─────────────────────────────────────────────────────────────────────────────────────────+
-                                              │
-                                              ▼
-+─────────────────────────────────────────────────────────────────────────────────────────+
-|                        NORMALIZATION & UNIT CONVERSION ENGINE                           |
-|        Assam Standard BKL Formula: 1 Bigha = 5 Katha = 100 Lesa ≈ 1337.8038 sq.m        |
-|        Coordinate Transformation: EPSG:4326 (WGS84) ──► EPSG:32646 (UTM Zone 46N)       |
-+─────────────────────────────────────────────────────────────────────────────────────────+
-                                              │
-                                              ▼
-+─────────────────────────────────────────────────────────────────────────────────────────+
-|                       8-POINT STATUTORY DUE-DILIGENCE ENGINE                            |
-|  [Check 1] Patta Tenure Classification (Periodic Patta vs Annual / Non-Transferable)   |
-|  [Check 2] Spatial-Textual Area Variance (|GIS Polygon Area - Jamabandi Area| <= 5.0%) |
-|  [Check 3] Co-Sharer Partition Integrity (Sum of recorded Pattadar shares == 100.0%)    |
-|  [Check 4] e-Khajana Revenue Status (Annual Touzi Demand current; zero arrears)         |
-|  [Check 5] Encumbrance & Lien Registry (No unredeemed bank mortgages on record)         |
-|  [Check 6] Civil Court Litigation Registry (Zero active stay orders or lis pendens)     |
-|  [Check 7] Chapter X Tribal Belt Filter (Transferor & Transferee class eligibility)    |
-|  [Check 8] Ecological Buffer Check (No overlap with VGR, PGR, wetlands or rivers)       |
-+─────────────────────────────────────────────────────────────────────────────────────────+
-                                              │
-                                              ▼
-+─────────────────────────────────────────────────────────────────────────────────────────+
-|                        CADASTRAL MARKETPLACE & DEAL ROOM CORE                           |
-|  • Dynamic Vector Cadastral Tile Server (GeoJSON / MapLibre)                            |
-|  • Zonal Value vs Asking Price Benchmark Calculator                                     |
-|  • Cryptographic Title Clearance Badge Generator (Gold / Silver / Conditional)          |
-|  • Assisted Transaction Workflow State Machine (Listing ➔ EOI ➔ NOC ➔ e-Panjeeyan)      |
-+─────────────────────────────────────────────────────────────────────────────────────────+
-                                              │
-                                              ▼
-+─────────────────────────────────────────────────────────────────────────────────────────+
-|                           ROLE-BASED PRESENTATION APPS                                  |
-|   • Public Cadastral Marketplace Explorer (Interactive WebGIS Map & Parcel Filter)      |
-|   • Lawful Seller Onboarding Portal (e-KYC & Jamabandi Consent Flow)                    |
-|   • Buyer Due-Diligence Deal Room (Official vs Seller Data + EOI Engine)                |
-|   • Revenue Department Command Console (Dispur Pilot Admin & Facilitation Fee Audits)   |
-+─────────────────────────────────────────────────────────────────────────────────────────+
-```
+The architecture is structured across 5 distinct operational tiers:
+
+### Tier 1: Data Federation Gateways
+• Dharitree Extracts: Jamabandi Textual RoR, Pattadar lineage, recorded area, and revenue classification.  
+• Bhudakshya WebGIS: Cadastral GeoJSON layers, vector Dag boundaries, and DGPS coordinates.  
+• e-Panjeeyan SRO Registry: Historical registered deeds and 12-year non-encumbrance records.  
+• Zonal Valuation DB: Circle-wise gazetted valuation schedules (Rs./Bigha) and PWD road classifications.  
+• e-Khajana & GRAS: Touzi ledger demand, real-time land revenue tax clearance, and treasury receipts.  
+• Tribal Belt & Block Polygons: Notified Chapter X protected zones under ALRR 1886.  
+
+### Tier 2: Normalization & Unit Conversion Engine
+• Assam Standard BKL Formula: 1 Bigha = 5 Katha = 100 Lesa = 1,337.8038 sq. meters (14,400 sq. feet).  
+• Spatial Coordinate Transformation: EPSG:4326 (WGS84) to EPSG:32646 (UTM Zone 46N) for millimeter-accurate polygon boundary checks.  
+
+### Tier 3: 8-Point Statutory Due-Diligence Engine
+• Check 1 (Tenure Class): Periodic Patta (Khiraj Myadi) alienable tenure vs. Annual/Non-Transferable Patta.  
+• Check 2 (Area Variance): Strict area variance tolerance: |GIS Polygon Area - Jamabandi Area| / Jamabandi Area <= 5.0%.  
+• Check 3 (Co-Sharer Partition): Sum of recorded Pattadar fractional shares equals exactly 100.0%.  
+• Check 4 (e-Khajana Status): Annual Touzi revenue demand current; zero arrears on record.  
+• Check 5 (Lien Search): e-Panjeeyan query confirms zero active bank mortgages or attachment orders.  
+• Check 6 (Litigation Search): Revenue court registry confirms zero active stay orders or lis pendens.  
+• Check 7 (Chapter X Filter): Validates transferor and transferee class eligibility in protected Tribal Belts.  
+• Check 8 (Ecological Buffers): Verifies zero overlap with VGR, PGR, wetlands, or PWD road buffer setbacks.  
+
+### Tier 4: Cadastral Marketplace & Deal Room Core
+• Dynamic Vector Tile Map Server: Client-side vector tile rendering using MapLibre GL and Leaflet.  
+• Zonal Value Benchmark Calculator: Compares asking price against circle gazette baseline to compute fair value premium.  
+• Verification Badge Generator: Deterministic scoring awarding Gold Verified (90-100), Silver Verified (75-89), Conditional (50-74), or Restricted (<50).  
+• Assisted Conveyancing State Machine: Deterministic milestone transitions from listing to automated Basundhara mutation.  
+
+### Tier 5: Role-Based Presentation Applications
+• Public Cadastral Marketplace Explorer: Interactive WebGIS map with circle, mouza, land class, and BKL filters.  
+• Lawful Seller Onboarding Portal: Aadhaar e-KYC consent flow and automatic Jamabandi RoR fetch.  
+• Buyer Due-Diligence Deal Room: Side-by-side comparison of official vs. seller data with EOI offer submission.  
+• Department Command Console: Real-time circle administration, facilitation fee telemetry, and pilot audit logs.  
 
 ---
 
 ## 3. Data Schemas & Separation of Truth
 
-A paramount principle of NESFIC-D-52 is the **strict, unequivocal distinction** between immutable Government-verified record data and self-declared seller representations:
+A paramount principle of NESFIC-D-52 is the strict, unequivocal distinction between immutable Government-verified record data and self-declared seller representations:
 
 ```json
 {
@@ -152,14 +142,14 @@ The core automated due-diligence engine executes deterministic validation rules:
 
 | Check ID | Verification Rule | Algorithmic Evaluation | Passing Condition | Weight |
 | :--- | :--- | :--- | :--- | :--- |
-| **CHK-01** | **Tenure Class** | `RoR.patta_type` in `['Khiraj Myadi', 'Periodic Patta']` | Must be permanent alienable tenure | 20 pts |
-| **CHK-02** | **Area Consistency** | `abs(GIS_Area - Jamabandi_Area) / Jamabandi_Area <= 0.05` | Variance strictly within 5% tolerance | 15 pts |
-| **CHK-03** | **Share Completeness** | `sum(pattadar.shares) == 100.0` | Fractional shares sum to exactly 100% | 15 pts |
-| **CHK-04** | **e-Khajana Status** | `eKhajana.arrears == 0.0` | Zero pending land revenue dues | 10 pts |
-| **CHK-05** | **Encumbrance Check** | `ePanjeeyan.active_liens == 0` | No active bank hypothecation / attachment | 15 pts |
-| **CHK-06** | **Litigation Check** | `RevenueCourt.injunctions == 0` | No pending title stay or dispute notices | 10 pts |
-| **CHK-07** | **Chapter X Compliance** | `Parcels.intersects(Tribal_Belt) == False` or Buyer Eligible | Complies with ALRR tribal land safeguards | 10 pts |
-| **CHK-08** | **Ecological Reserve** | `ST_DWithin(Parcel, VGR_PGR_Layer, 0) == False` | Zero encroachment on village grazing lands | 5 pts |
+| **CHK-01** | **Tenure Class** | RoR.patta_type in ['Khiraj Myadi', 'Periodic Patta'] | Must be permanent alienable tenure | 20 pts |
+| **CHK-02** | **Area Consistency** | abs(GIS_Area - Jamabandi_Area) / Jamabandi_Area <= 0.05 | Variance strictly within 5% tolerance | 15 pts |
+| **CHK-03** | **Share Completeness** | sum(pattadar.shares) == 100.0 | Fractional shares sum to exactly 100% | 15 pts |
+| **CHK-04** | **e-Khajana Status** | eKhajana.arrears == 0.0 | Zero pending land revenue dues | 10 pts |
+| **CHK-05** | **Encumbrance Check** | ePanjeeyan.active_liens == 0 | No active bank hypothecation / attachment | 15 pts |
+| **CHK-06** | **Litigation Check** | RevenueCourt.injunctions == 0 | No pending title stay or dispute notices | 10 pts |
+| **CHK-07** | **Chapter X Compliance** | Parcels.intersects(Tribal_Belt) == False or Buyer Eligible | Complies with ALRR tribal land safeguards | 10 pts |
+| **CHK-08** | **Ecological Reserve** | ST_DWithin(Parcel, VGR_PGR_Layer, 0) == False | Zero encroachment on village grazing lands | 5 pts |
 
 ### Dynamic Badge Scoring:
 - **GOLD VERIFIED (Score 90–100):** Clean title, zero encumbrances, zero area variance, ready for fast-track statutory sale.
@@ -171,30 +161,15 @@ The core automated due-diligence engine executes deterministic validation rules:
 
 ## 5. Assisted Conveyancing State Machine
 
-```
-   [1. VOLUNTARY LISTING]
-              │
-              ▼
-   [2. 8-POINT GOVERNMENT VERIFICATION] ──► (Discrepancy ➔ Rectification Notice)
-              │ (Verified)
-              ▼
-   [3. PUBLIC CADASTRAL MAP EXPLORATION]
-              │
-              ▼
-   [4. BUYER EXPRESSION OF INTEREST (EOI)]
-              │
-              ▼
-   [5. MUTUAL PRICE AGREEMENT & ESCROW TOKEN]
-              │
-              ▼
-   [6. AUTOMATED LAND SALE NOC APPLICATION (Circle Officer)]
-              │ (Approved)
-              ▼
-   [7. DIGITAL e-PANJEEYAN BIOMETRIC DEED REGISTRATION]
-              │ (Registered)
-              ▼
-   [8. AUTOMATED MISSION BASUNDHARA MUTATION INITIATION]
-```
+The transaction pipeline follows an 8-step deterministic workflow:
+1. **Voluntary Listing & e-KYC:** Lawful Pattadar authenticates via Aadhaar OTP and confirms intent to sell.
+2. **8-Point Government Verification:** Automated cross-check of Dharitree, Bhudakshya, e-Panjeeyan, and e-Khajana records.
+3. **Public Cadastral Map Exploration:** Verified parcel published on interactive WebGIS map with verification badges.
+4. **Buyer Expression of Interest (EOI):** KYC-verified buyers submit formal price offers and terms through the Deal Room.
+5. **Mutual Agreement & Escrow Deposit:** Seller accepts offer; buyer deposits token fee in government cyber-treasury escrow.
+6. **Automated Land Sale NOC Application:** Pre-populated NOC dossier routed directly to Dispur Circle Officer for field clearance.
+7. **Digital e-Panjeeyan Biometric Deed Registration:** SRO appointment scheduled; deed executed with biometric verification.
+8. **Automated Mission Basundhara 3.0 Mutation:** Registration event triggers instant mutation pipeline, updating Jamabandi within 72 hours.
 
 ---
 
@@ -224,7 +199,8 @@ Testing was conducted using a synthetic benchmark suite simulating **10,000 cada
 
 ## 8. Summary of Prototype Artifacts
 
-- **Live Prototype Deployment:** Cloudflare Pages edge delivery at `https://bhumi-swasthya.pages.dev/`
-- **Application Codebase:** React 18, TypeScript, Tailwind CSS, Leaflet 1.9.4
+- **Live Prototype Deployment:** Cloudflare Pages edge delivery at `https://bhumi-binimoy.pages.dev/`
+- **Application Codebase:** React 19, TypeScript, Tailwind CSS, Leaflet 1.9.4
 - **Cadastral Geospatial Engine:** Python 3.13, PostGIS 3.4, Shapely, GeoJSON
 - **Publication PDFs:** ReportLab-generated high-resolution vector documents (`NESFIC_D52_Proposal_Ron_Hatibaruah.pdf`, `NESFIC_D52_Proof_of_Work_Ron_Hatibaruah.pdf`)
+- **GitHub Repository:** `https://github.com/RonHatibaruah/bhumi-binimoy`

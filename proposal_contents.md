@@ -1,204 +1,124 @@
 # NESFIC-D-52 Official Proposal Submission Contents
-**Problem Statement:** NESFIC-D-52 (Stream 1) — *Assam Land Exchange: Government-Verified Marketplace for Buying and Selling Land*  
+
+**Problem Statement:** NESFIC-D-52 (Stream 1 — Government Track) — *Assam Land Exchange: Government-Verified Marketplace for Buying and Selling Land*  
 **Challenge Owners:** Revenue & Disaster Management Department, Government of Assam  
 **Applicant / Innovator:** Ron Hatibaruah  
 **Application Platform:** Assam Startup Portal (NESFIC 2026)  
-**Proposed Solution Name:** BhumiBinimoy (ভূমি বিনিময়) — Assam Land Exchange (ALE)
+**Proposed Solution Name:** BhumiBinimoy (ভূমি বিনিময়) — Assam Land Exchange (ALE)  
+**Live Working Prototype:** `https://bhumi-binimoy.pages.dev/`  
+**GitHub Repository:** `https://github.com/RonHatibaruah/bhumi-binimoy`  
 
 ---
 
 ## Field 1: Problem understanding & user workflow
-*(Word Count: ~460 words / Max: 500 words)*
+*(Word Count: 421 words / Limit: 500 words)*
 
 ### Problem Context & Scale
-Land acquisition and property transactions in Assam form the cornerstone of socioeconomic mobility and capital formation. However, the current land market is severely constrained by extreme information asymmetry, opacity, and near-total reliance on unregulated private intermediaries and informal brokers. Prospective land buyers and lawful sellers navigate a fragmented ecosystem where critical land parameters are siloed across disparate platforms: Record of Rights (Jamabandi) in *Dharitree*, spatial boundaries in *Bhudakshya*, deed histories in *e-Panjeeyan*, land revenue demands in *e-Khajana*, and circle-level *Zonal Valuation* gazettes. 
+Land acquisition and property transactions in Assam form the cornerstone of socioeconomic mobility and capital formation. However, the current land market is severely constrained by extreme information asymmetry, opacity, and near-total reliance on unregulated private intermediaries and informal brokers. Prospective land buyers and lawful sellers navigate a fragmented ecosystem where critical land parameters are siloed across disparate platforms: Record of Rights (Jamabandi) in Dharitree, spatial boundaries in Bhudakshya, deed histories in e-Panjeeyan, land revenue demands in e-Khajana, and circle-level Zonal Valuation gazettes.
 
-This fragmentation creates fertile ground for fraudulent sales, duplicate listings, inflated artificial valuations, boundary encroachments, and distress sales. Prospective buyers have no reliable mechanism to determine whether a listed parcel possesses unencumbered title, correct BKL (Bigha-Katha-Lesa) measurements, or statutory transfer eligibility under Chapter X of the *Assam Land and Revenue Regulation (ALRR), 1886*. Conversely, genuine landowners wishing to sell voluntarily lack a trusted, state-facilitated channel to reach verified buyers without paying extortionate 5%–10% private brokerage commissions.
+This fragmentation creates fertile ground for fraudulent sales, duplicate listings, inflated artificial valuations, boundary encroachments, and distress sales. Prospective buyers have no reliable mechanism to determine whether a listed parcel possesses unencumbered title, correct BKL (Bigha-Katha-Lesa) measurements, or statutory transfer eligibility under Chapter X of the Assam Land and Revenue Regulation (ALRR), 1886. Conversely, genuine landowners wishing to sell voluntarily lack a trusted, state-facilitated channel to reach verified buyers without paying extortionate 5% to 10% private brokerage commissions.
 
 ### Current User Workflow & Structural Gaps
 Presently, property discovery begins through word-of-mouth, unverified roadside signage, or private online classifieds where property attributes are self-reported and unverifiable. Once a handshake agreement is reached, buyers initiate an arduous, manual due-diligence ordeal:
 1. Hiring local advocates to obtain certified physical Jamabandi copies from the Revenue Circle Office.
 2. Cross-verifying boundary coordinates through informal, off-the-record consultations with Lat Mandals.
 3. Conducting physical searches at Sub-Registrar offices to detect unrecorded mortgages or pending encumbrances.
-4. Applying for Land Sale NOCs under high uncertainty, only to face rejection months later due to latent co-sharer disputes, tribal belt restrictions, or ecological reserve (VGR/PGR) overlaps.
+4. Applying for Land Sale NOCs under high uncertainty, only to face rejection months later due to latent co-sharer disputes, tribal belt restrictions, or ecological reserve overlaps.
 
 This disjointed workflow causes transaction gestation periods to exceed 6 to 12 months, generates widespread civil litigation, and deprives the state exchequer of legitimate stamp duty through under-the-table cash settlements.
 
 ### Intended Users & Beneficiaries
-- **Lawful Landowners / Sellers:** Citizens and businesses seeking a secure, direct channel to monetize land at transparent, fair-market prices without predatory middlemen.
-- **Prospective Buyers:** Individuals, local enterprises, and industrial investors requiring verified legal tenure, precise cadastral demarcations, and clean title security.
-- **Government & Revenue Authorities:** Revenue Circle Officers, Sub-Registrars, and the Revenue & Disaster Management Department, who gain pre-cleared, digitized transaction pipelines that feed directly into automated registration (*e-Panjeeyan*) and institutional mutations (*Mission Basundhara*).
-- **Financial Institutions:** Commercial banks gaining tamper-proof collateral valuation based on authenticated government records.
+• Lawful Landowners and Sellers: Citizens seeking a secure, direct channel to monetize land at transparent, fair-market prices without predatory middlemen.  
+• Prospective Buyers: Individuals and investors requiring verified legal tenure, precise cadastral demarcations, and clean title security.  
+• Government Revenue Authorities: Revenue Circle Officers, Sub-Registrars, and the Revenue and Disaster Management Department, who gain pre-cleared transaction pipelines feeding into e-Panjeeyan and Mission Basundhara.  
+• Financial Institutions: Commercial banks gaining tamper-proof collateral valuation based on authenticated government records.  
 
 ### Specific Gap Addressed & Intended Outcome
-**BhumiBinimoy (Assam Land Exchange)** bridges the void between private property commerce and official land governance. It replaces informal broker networks with a trusted, cadastral-map-anchored digital marketplace where only verified owners can list land, authenticated records are transparently disclosed alongside seller representations, and transactions follow an assisted, tamper-proof statutory journey.
+BhumiBinimoy (Assam Land Exchange) bridges the void between private property commerce and official land governance. It replaces informal broker networks with a trusted, cadastral-map-anchored digital marketplace where only verified owners can list land, authenticated records are transparently disclosed alongside seller representations, and transactions follow an assisted, tamper-proof statutory journey.
 
 ---
 
 ## Field 2: Proposed solution & key features
-*(Word Count: ~470 words / Max: 500 words)*
+*(Word Count: 378 words / Limit: 500 words)*
 
 ### Proposed Solution Overview
-**BhumiBinimoy (Assam Land Exchange)** is an interactive, cadastral-map-based digital marketplace and transaction facilitation engine developed for the Government of Assam. It integrates directly with Assam’s foundational land administration pillars—*Dharitree* (RoR), *Bhudakshya* (WebGIS), *e-Panjeeyan* (Registration), *Zonal Valuation DB*, and *e-Khajana*—providing an end-to-end, broker-free platform where voluntary land listings undergo automated statutory verification, transparent price discovery, and assisted conveyancing.
+BhumiBinimoy (Assam Land Exchange) is an interactive, cadastral-map-based digital marketplace and transaction facilitation engine developed for the Government of Assam. It integrates directly with Assam's foundational land administration pillars—Dharitree (RoR), Bhudakshya (WebGIS), e-Panjeeyan (Registration), Zonal Valuation DB, and e-Khajana—providing an end-to-end, broker-free platform where voluntary land listings undergo automated statutory verification, transparent price discovery, and assisted conveyancing.
 
 ### Main Modules & Core Functions
-1. **Cadastral Map Marketplace Explorer:**
-   - Visualizes listed land parcels as interactive vector polygons directly overlaid on Assam’s official cadastral sheets.
-   - Enables prospective buyers to filter parcels by Revenue Circle, Mouza, Land Classification (Bari, Basti, Faringati, Rupit, Commercial), BKL area, and budget.
-   - Implements high-visibility visual badges: *Gold Verified (Full Government Data Cleared)*, *Conditional Transfer (Co-sharer Consent Required)*, and *Tribal Belt Warning (Protected Class Restrictions)*.
-
-2. **Voluntary Seller Onboarding & Jamabandi Authentication:**
-   - Enables lawful pattadars to list land voluntarily via Aadhaar-linked e-KYC and mobile OTP authentication.
-   - Automatically queries *Dharitree* by Dag and Patta number, extracting recorded BKL area, Pattadar co-shares, annual Touzi revenue demand, and active encumbrances.
-   - Enforces a clear statutory demarcation between **Government-Verified Official Particulars** (tamper-proof system data) and **Seller Representations** (asking price, photographs, development potential, and physical amenities).
-
-3. **Transparent Price Discovery & Zonal Value Engine:**
-   - Benchmarks seller asking prices against gazetted Circle-level *Zonal Rates* ($₹/\text{Bigha}$).
-   - Computes an algorithmic *Fair Value Index* and transparently informs buyers of estimated statutory stamp duty and registration cess prior to making an offer.
-
-4. **8-Point Title Due-Diligence Ledger:**
-   - Real-time automated audit across 8 statutory checks: (1) Periodic vs. Annual Patta tenure, (2) Jamabandi vs. Bhudakshya area variance, (3) Co-sharer partition balance, (4) e-Khajana tax clearance, (5) Bank hypothecation/lien status, (6) Civil court injunction flags, (7) Chapter X Tribal Belt/Block eligibility, and (8) VGR/PGR/Wetland proximity buffer.
-
-5. **Assisted Conveyancing & Transaction Deal Room:**
-   - Facilitates digital Expressions of Interest (EOI), structured negotiation, and optional milestone-based token escrow.
-   - Auto-populates pre-verified Land Sale NOC applications directly into the Circle Officer’s workflow, scheduling biometric deed execution at the Sub-Registrar office (*e-Panjeeyan*) and triggering post-registration auto-mutation in *Mission Basundhara*.
-
-6. **Statutory Integrity & Policy Compliance:**
-   - Prominently displays statutory disclaimers: *“Listing does not constitute guaranteed title certification; formal statutory conveyance remains subject to statutory revenue inquiries.”*
-   - Embeds an optional Government Facilitation Fee module (0.25%–0.50%), generating legitimate non-tax revenue for the state exchequer.
+1. Cadastral Map Marketplace Explorer: Visualizes listed land parcels as interactive vector polygons directly overlaid on Assam's official cadastral sheets. Enables prospective buyers to filter parcels by Revenue Circle, Mouza, Land Classification (Bari, Basti, Faringati, Rupit, Commercial), BKL area, and budget. Implements high-visibility badges: Gold Verified (Full Government Data Cleared), Conditional Transfer (Co-sharer Consent Required), and Tribal Belt Warning (Protected Class Restrictions).
+2. Voluntary Seller Onboarding & Jamabandi Authentication: Enables lawful pattadars to list land voluntarily via Aadhaar-linked e-KYC. Automatically queries Dharitree by Dag and Patta number, extracting recorded BKL area, Pattadar co-shares, annual Touzi revenue demand, and active encumbrances. Enforces a strict statutory demarcation between Government-Verified Official Particulars (immutable system records) and Seller Representations (asking price, photographs, development amenities).
+3. Transparent Price Discovery & Zonal Value Benchmarking: Automatically compares seller asking prices against official Circle Zonal Valuation rates (Rs./Bigha). Computes a Fair Value Index and transparently displays statutory stamp duty (6%), registration fee (2%), and optional facilitation fee (0.25%), eliminating artificial broker markups and under-the-table cash demands.
+4. 8-Point Automated Title Due-Diligence Engine: Algorithmic title verification evaluating: (1) Periodic vs. Annual Patta tenure alienability; (2) Bhudakshya vector area variance within 5%; (3) Co-sharer partition and unpartitioned shares; (4) e-Khajana Touzi tax clearance; (5) e-Panjeeyan 12-year registered encumbrance and bank lien search; (6) Revenue court litigation injunctions; (7) Chapter X Tribal Belt and Block transfer eligibility; and (8) Protected wetland and PWD road buffer setbacks.
+5. Assisted Conveyancing State Machine & Deal Room: A milestone-driven conveyancing deal room managing Expressions of Interest (EOI), counter-offers, and token deposits via government cyber-treasury escrow. Generates auto-populated Land Sale NOC applications for Circle Officer approval, schedules biometric deed execution at the Sub-Registrar Office, and triggers automated mutation under Mission Basundhara 3.0 within 72 hours.
 
 ### Paradigm Shift
-| Dimension | Traditional Broker-Driven Market | BhumiBinimoy (Assam Land Exchange) |
-| :--- | :--- | :--- |
-| **Discovery** | Opaque private brokers; unverified classifieds | Interactive Cadastral WebGIS map with verified parcel boundaries |
-| **Title Verification** | 30–90 days manual physical record searches | Instantaneous 8-point Government data reconciliation |
-| **Pricing** | Speculative, artificially inflated by broker margins | Transparent benchmarking against official Zonal Valuation rates |
-| **Conveyancing** | Disconnected, multi-department paper chase | Assisted digital pipeline: EOI ➔ Sale NOC ➔ e-Panjeeyan ➔ Basundhara |
-| **Intermediary Cost** | 5%–10% informal commission fees | 0% broker cut; nominal 0.25%–0.5% Government facilitation fee |
+This transforms Assam's land economy from an opaque, broker-dominated market into a trusted, government-verified exchange that protects citizen capital, streamlines conveyancing, and secures legitimate state revenues.
 
 ---
 
 ## Field 3: Technology architecture & feasibility
-*(Word Count: ~455 words / Max: 500 words)*
+*(Word Count: 312 words / Limit: 400 words)*
 
 ### System Architecture & Technical Flow
-BhumiBinimoy is architected as a cloud-native, microservices-based GovTech platform deployed within the **Assam State Data Centre (ASDC)** environment to guarantee data sovereignty and zero trust security.
+BhumiBinimoy is architected as a cloud-native, microservices-based GovTech platform deployed within the Assam State Data Centre (ASDC) environment to guarantee data sovereignty, zero-trust security, and high availability.
 
-```
-+───────────────────────────────────────────────────────────────────────────────────+
-|                           CITIZEN & BUYER INTERFACE LAYER                         |
-|   • Cadastral GIS Explorer (Leaflet/MapLibre)   • Seller Listing & e-KYC Portal   |
-|   • Transparent Due Diligence Deal Room         • Assisted Conveyancing Dashboard |
-+───────────────────────────────────────────────────────────────────────────────────+
-                                          │  HTTPS / TLS 1.3
-                                          ▼
-+───────────────────────────────────────────────────────────────────────────────────+
-|                           API GATEWAY & SECURITY PERIMETER                        |
-|   • NIC e-Pramaan OAuth2 / Jan Parichay Authentication  • WAF & Rate Limiting     |
-|   • Role-Based Access Control (RBAC)                    • Cryptographic Tokenizer |
-+───────────────────────────────────────────────────────────────────────────────────+
-                                          │
-        ┌─────────────────────────────────┼─────────────────────────────────┐
-        ▼                                 ▼                                 ▼
-+──────────────────────+       +──────────────────────+       +─────────────────────+
-|  MARKETPLACE ENGINE  |       | VERIFICATION GATEWAY |       | WORKFLOW ORCHESTRATOR|
-| • Parcel Discovery   |       | • Dharitree RoR API  |       | • EOI & Counter-Offer|
-| • Spatial Filtering  |       | • Bhudakshya GIS API |       | • Sale NOC Pipe     |
-| • Zonal Value Index  |       | • e-Panjeeyan Ledger |       | • e-Panjeeyan Deed  |
-| • Facilitation Calc  |       | • e-Khajana Revenue  |       | • Basundhara Mutate |
-+──────────────────────+       +──────────────────────+       +─────────────────────+
-        │                                 │                                 │
-        └─────────────────────────────────┼─────────────────────────────────┘
-                                          ▼
-+───────────────────────────────────────────────────────────────────────────────────+
-|                           DATA PERSISTENCE & GIS STORAGE                          |
-|   • PostgreSQL 16 + PostGIS (Spatial Cadastral Polygons & BKL Coordinate Indexes) |
-|   • Encrypted Transaction Ledger (PostgreSQL with Immutable SHA-256 Checksums)    |
-|   • Redis 7.2 (Distributed Spatial Tile Cache & High-Throughput Search Sessions)   |
-+───────────────────────────────────────────────────────────────────────────────────+
-```
+1. Presentation Layer: Modern, responsive single-page WebGIS application built with React 19, TypeScript, and Tailwind CSS. Utilizes Leaflet and MapLibre GL for client-side rendering of vector tiles and cadastral Dag boundaries, alongside dedicated portals for Buyers, Sellers, and Revenue Officials.
+2. API Gateway & Security Perimeter: Enterprise gateway enforcing TLS 1.3 encryption, Web Application Firewall (WAF) threat filtering, rate limiting, and Role-Based Access Control (RBAC). User authentication integrates seamlessly with National Informatics Centre (NIC) e-Pramaan and Jan Parichay OAuth2 single sign-on. Every milestone transaction creates an immutable SHA-256 audit log.
+3. Core Microservices Engine: Containerized microservices running on Kubernetes, including: (a) Cadastral Vector Tile Map Server; (b) 8-Point Automated Due-Diligence Scoring Engine; (c) Zonal Valuation Benchmark Calculator; (d) Assisted Conveyancing State Machine; and (e) Statutory Notice and Document Generation Service.
+4. Federated Integration Gateways: REST and JSON integration adaptors interfacing with Assam's core land databases:
+• Dharitree API: Ingests Jamabandi ownership, Pattadar lineage, and land class attributes.  
+• Bhudakshya WebGIS: Ingests vector cadastral Dag polygons and DGPS boundary coordinates.  
+• e-Panjeeyan SRO Gateway: Queries historical registered deeds and active financial institution liens.  
+• e-Khajana & GRAS: Validates real-time Touzi tax clearance via cyber-treasury receipts.  
+• Mission Basundhara 3.0: Direct API pipeline initiating automated mutation upon deed registration.  
+5. Enterprise Data Layer: Scalable PostgreSQL 16 relational database with PostGIS 3.4 spatial extensions for sub-second spatial querying, polygon overlay intersection, and boundary buffer checks. Redis 7.2 cluster manages distributed session caching and vector tile acceleration. ASDC Tier-III enterprise storage with automated daily snapshots and disaster recovery replication.
 
 ### Core Technologies & Open-Source Stack
-- **Geospatial & Map Engine:** PostGIS 3.4 on PostgreSQL 16 paired with Leaflet.js and MapLibre GL for client-side vector cadastral rendering (GeoJSON/MVT). Planar coordinate reprojection uses EPSG:32646 (UTM Zone 46N) for millimeter-accurate area calculation.
-- **Backend Services:** Node.js / Python FastAPIs running containerized microservices within Kubernetes (K8s) on ASDC virtual infrastructure.
-- **Frontend Presentation:** React 18, TypeScript, and Tailwind CSS, engineered as a Progressive Web App (PWA) with responsive mobile optimization for rural landowners.
-- **Interoperability & Data Pipelines:** Read-only REST and event-driven Apache Kafka connectors interfacing with *Dharitree* SQL views, *Bhudakshya* WFS/WMS spatial servers, and *e-Khajana* payment gateways.
-
-### Data Security, Privacy & Compliance
-- **Masked Ownership Disclosure:** In compliance with Digital Personal Data Protection (DPDP) Act guidelines, public map queries display only lawful pattadar initials and masked identifiers (`Pattadar: R*** H***; Patta: KP-118`), revealing full verified identity only upon mutual acceptance of a formal EOI.
-- **Tamper-Proof Audit Trail:** Every listing verification, offer, and status change is hashed with SHA-256 and written to an append-only audit log.
-- **Fail-Safe Statutory Disclaimer:** Systemically embedded watermarks ensure all generated due-diligence summaries are marked: *"Government Facilitated Informational Listing — Statutory Approvals Required under ALRR 1886."*
+The architecture is built entirely on proven, open-source enterprise standards (OGC compliant), eliminating proprietary software license fees and guaranteeing total interoperability across state IT systems.
 
 ---
 
 ## Field 4: Pilot proposal, KPIs, implementation plan, and budget
-*(Word Count: ~480 words / Max: 500 words)*
+*(Word Count: 343 words / Limit: 400 words)*
 
 ### Pilot Context: Dispur Revenue Circle (Kamrup Metro)
-To validate the platform under demanding, high-volume conditions, a 6-month initial pilot will be launched in **Dispur Revenue Circle**, Kamrup Metropolitan District. Dispur represents Assam's premier commercial and peri-urban nexus, characterized by 100% digitized Dharitree Jamabandi coverage, completed Bhudakshya cadastral mapping, updated Zonal Valuation schedules, and high annual land transaction frequency (>15,000 annual deeds).
+To validate the platform under demanding, high-volume conditions, a 6-month initial pilot will be launched in Dispur Revenue Circle, Kamrup Metropolitan District. Dispur represents Assam's premier commercial and urban nexus, featuring 100% digitized Dharitree Jamabandi coverage, completed Bhudakshya cadastral mapping, updated Zonal Valuation schedules, and high transaction volume (>15,000 annual deeds).
 
 ### Phased 12-Month Implementation Roadmap
-```
-+─────────────────────────────────────────────────────────────────────────────────────────+
-| MONTH 1-2: BASELINE INTEGRATION & SECURE ENVIRONMENT                                    |
-| • Establish ASDC staging environment; connect read-only Dharitree & Bhudakshya test APIs|
-| • Ingest Dispur Circle cadastral sheets, Zonal rates, and village boundaries.           |
-+─────────────────────────────────────────────────────────────────────────────────────────+
-                                           │
-                                           ▼
-+─────────────────────────────────────────────────────────────────────────────────────────+
-| MONTH 3-4: VOLUNTARY SELLER ONBOARDING & PILOT LAUNCH                                   |
-| • Deploy citizen-facing portal; launch voluntary listing drive across 10 Dispur mouzas. |
-| • Onboard initial cohort of 500+ verified private landowners with zero listing fees.    |
-+─────────────────────────────────────────────────────────────────────────────────────────+
-                                           │
-                                           ▼
-+─────────────────────────────────────────────────────────────────────────────────────────+
-| MONTH 5-7: BUYER DISCOVERY & ASSISTED TRANSACTION TESTING                               |
-| • Activate interactive Cadastral Marketplace and Buyer Due-Diligence Deal Room.         |
-| • Facilitate end-to-end sandbox transactions through Sale NOC and e-Panjeeyan slots.    |
-+─────────────────────────────────────────────────────────────────────────────────────────+
-                                           │
-                                           ▼
-+─────────────────────────────────────────────────────────────────────────────────────────+
-| MONTH 8-12: PROVINCIAL ROLLOUT & STATEWIDE SCALING                                      |
-| • Expand coverage to Guwahati, Sonapur, North Guwahati, Dibrugarh, and Tezpur Circles.   |
-| • Integrate live e-Khajana payment clearance and automated Mission Basundhara mutation. |
-+─────────────────────────────────────────────────────────────────────────────────────────+
-```
+• Months 1-2 (Baseline Integration & Security Setup): Establish secure ASDC cloud staging; configure read-only API connectors to Dharitree, Bhudakshya, and e-Panjeeyan test environments; ingest Dispur Circle vector cadastral sheets, Zonal rates, and village boundaries; conduct comprehensive STQC security audit and vulnerability assessment.  
+• Months 3-4 (Voluntary Seller Onboarding & Portal Launch): Deploy public marketplace portal; launch voluntary listing drive across 10 Dispur mouzas with local Circle Office coordination; onboard initial cohort of 500 verified Pattadars with e-KYC; activate automated 8-point due-diligence engine.  
+• Months 5-8 (Assisted Conveyancing & Escrow Operations): Launch Buyer Deal Room, EOI submission, and token escrow pipeline; operationalize pre-cleared Land Sale NOC processing with Dispur Circle Officer; facilitate 1,500 assisted transactions with dedicated helpdesk support.  
+• Months 9-12 (Evaluation, Basundhara 3.0 Scale-Out, and District Rollout): Ingest user feedback; optimize spatial tile caching; fully automate registration-to-mutation handover via Mission Basundhara 3.0 (72-hour turnaround); expand pilot coverage across all Kamrup Metro revenue circles (Guwahati, Sonapur, North Guwahati, Azara).  
 
 ### Key Performance Indicators (KPIs)
-1. **Listing Integrity:** 100% of marketplace listings backed by authenticated Jamabandi and non-overlapping Bhudakshya polygons.
-2. **Due-Diligence Time Reduction:** Slash average pre-transaction due diligence from 45 days to under 5 minutes.
-3. **Transaction Cycle Compression:** Reduce total transaction turnaround (listing to registration) from 180 days to under 30 days.
-4. **Dispute Elimination:** 0% post-transaction boundary or tribal-belt litigation arising from platform-facilitated trades.
-5. **Direct Citizen Savings:** Save participating citizens an estimated ₹12–15 Crore in avoided private broker commissions during the pilot phase alone.
+• 1,500+ voluntary parcels listed with 100% verified Pattadar e-KYC.  
+• Zero fraudulent or unverified property listings published on the platform.  
+• Average conveyancing turnaround reduced from 90+ days to under 30 days.  
+• 100% elimination of private broker commissions, saving citizens an estimated Rs. 15+ Crore.  
+• 99.9% system availability with sub-second vector map tile loading.  
 
-### Milestone-Based Grant Budget Utilization (₹40.00 Lakh)
-| Phase / Milestone | Deliverable Scope | Budget (INR) |
-| :--- | :--- | :--- |
-| **Milestone 1 (M1–M3)** | ASDC infrastructure deployment, Dharitree/Bhudakshya data connectors, and Core GIS Marketplace Engine | **₹10,00,000** |
-| **Milestone 2 (M4–M6)** | Voluntary Seller Onboarding Module, Zonal Value Engine, and Dispur Pilot Launch (500 listings) | **₹12,00,000** |
-| **Milestone 3 (M7–M9)** | Assisted Deal Room, e-Panjeeyan/Sale NOC workflow bridge, and Security Audit (VAPT/ASDC) | **₹10,00,000** |
-| **Milestone 4 (M10–M12)**| Multi-circle expansion (5 districts), stakeholder capacity training, and baseline impact evaluation | **₹8,00,000** |
-| **Total Grant Requirement** | **Full Prototype, Pilot Execution, and State Rollout Preparation** | **₹40,00,000** |
+### Milestone-Based Grant Budget Utilization (Total: ₹40.00 Lakh)
+1. Software Engineering, Microservices & API Integration: ₹14.00 Lakh (35%)  
+2. Cadastral WebGIS, Spatial Engine & Vector Tile Infrastructure: ₹10.00 Lakh (25%)  
+3. Security Auditing, ASDC Deployment, VAPT & Compliance: ₹6.00 Lakh (15%)  
+4. Circle Field Testing, Stakeholder Training & Citizen Helpdesk: ₹6.00 Lakh (15%)  
+5. Technical Contingency & Operational Buffer: ₹4.00 Lakh (10%)  
 
 ---
 
 ## Field 5: Team capabilities, commercialization & sustainability
-*(Word Count: ~445 words / Max: 500 words)*
+*(Word Count: 259 words / Limit: 300 words)*
 
 ### Lead Applicant & Technical Capability: Ron Hatibaruah
-- **Domain Specialization:** Full-stack GovTech architect with extensive experience in GIS mapping engines, PostGIS spatial algorithms, cadastral data integration, and secure web application development.
-- **Deep Contextual Understanding:** Comprehensive mastery of Assam’s statutory land framework, including the *Assam Land and Revenue Regulation, 1886*, Chapter X Tribal Belt/Block restrictions, Bigha-Katha-Lesa unit conversions ($1\text{ Bigha} = 5\text{ Katha} = 100\text{ Lesa} \approx 1337.8\text{ m}^2$), and ongoing digital reforms (*Dharitree*, *Bhudakshya*, and *Mission Basundhara*).
-- **Execution Track Record:** Rapid design and deployment of high-fidelity functional prototypes, spatial anomaly detection systems, and enterprise cloud architectures. Supported by domain legal advisors in Assam revenue laws and seasoned GIS data analysts.
+• Domain Expertise: Full-stack GovTech architect and software engineer with deep specialization in geospatial platforms, PostGIS spatial algorithms, secure cloud architectures, and digital public infrastructure.  
+• Contextual Mastery: Comprehensive command of Assam's statutory land framework, including the Assam Land and Revenue Regulation (ALRR) 1886, Chapter X Tribal Belt/Block protections, BKL unit arithmetic (1 Bigha = 5 Katha = 100 Lesa = 1,337.80 sq. m), and state digital platforms (Dharitree, Bhudakshya, e-Panjeeyan, and Mission Basundhara).  
+• Execution Track Record: Demonstrated ability to design, build, and deploy production-grade WebGIS applications, automated compliance engines, and secure microservices. Supported by revenue legal advisors and GIS data specialists.  
 
 ### Commercialization Model & Financial Sustainability
-BhumiBinimoy operates on a sustainable GovTech public-value model that creates a win-win economic dynamic for citizens and the state:
-1. **Voluntary Citizen Listing (Always Free):** Lawful landowners can list parcels at zero cost, ensuring maximum voluntary adoption and democratization of the marketplace.
-2. **Government Facilitation Fee (Policy Option):** In lieu of predatory 5%–10% private broker fees, the Government of Assam can levy a modest **0.25% to 0.50% statutory facilitation fee** on successful transactions completed through the exchange.
-   - *Revenue Projection:* With Kamrup Metro recording over ₹3,000 Crore in annual real estate transfers, capturing just 10% of transactions on BhumiBinimoy yields **₹7.5 to ₹15 Crore in non-tax revenue** annually for the Revenue Department, fully self-funding platform operations and infrastructure.
-3. **Institutional API Services:** Value-added verified title search APIs for commercial banks, non-banking financial companies (NBFCs), and infrastructure developers conducting statutory due diligence.
+BhumiBinimoy operates on a sustainable GovTech public-value model:  
+1. Voluntary Citizen Listing (Always Free): Lawful landowners list parcels at zero cost, ensuring broad adoption and democratization of the marketplace.  
+2. Government Facilitation Fee (Policy Option): In lieu of predatory 5% to 10% broker fees, the State may levy a modest 0.25% facilitation fee on completed transactions. In Dispur Circle alone (approx. Rs. 3,000 Crore annual transaction value), a 0.25% fee generates Rs. 7.50 Crore annually, fully self-funding ASDC cloud operations, GIS updates, and citizen helpdesks.  
+3. Win-Win Public Value: Eliminates speculative price inflation, protects buyer capital, and increases legitimate stamp duty revenue by reflecting true market values rather than undervalued cash settlements.  
 
 ### Scalability & Long-Term Vision
-Following pilot validation in Dispur Circle, BhumiBinimoy will expand across all 35 districts and 150+ Revenue Circles in Assam. Its modular architecture enables horizontal extension into institutional land leasing, industrial land banks for the *Assam Industrial Infrastructure Development Corporation (AIIDC)*, and integrated agricultural land exchanges. By anchoring land transactions in verifiable digital truth, BhumiBinimoy establishes the digital foundation for a transparent, dispute-free, and economically vibrant *Viksit Assam*.
+Built on containerized microservices and standard spatial schemas, BhumiBinimoy effortlessly scales from Dispur Circle to all 35 districts of Assam, establishing India's first unified, government-verified cadastral land marketplace.
