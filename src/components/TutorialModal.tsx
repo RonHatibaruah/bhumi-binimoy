@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 import { 
   X, 
   BookOpen, 
+  Building2, 
   ShieldCheck, 
   Map, 
-  ClipboardList, 
-  UserCheck, 
-  Scale, 
-  AlertTriangle, 
+  SearchCheck, 
+  PlusCircle, 
+  ArrowRightLeft, 
+  DollarSign, 
   CheckCircle2, 
   HelpCircle,
   ArrowRight,
-  Sparkles,
-  Layers
+  Info
 } from 'lucide-react';
+import { ActiveTab } from './Navbar';
 
 interface TutorialModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onNavigateTab: (tab: 'dashboard' | 'gis-map' | 'field-verification' | 'citizen-portal') => void;
+  onNavigateTab: (tab: ActiveTab) => void;
 }
 
 export const TutorialModal: React.FC<TutorialModalProps> = ({
@@ -26,31 +27,31 @@ export const TutorialModal: React.FC<TutorialModalProps> = ({
   onClose,
   onNavigateTab
 }) => {
-  const [activeSection, setActiveSection] = useState<'overview' | 'features' | 'scoring' | 'walkthrough'>('overview');
+  const [activeSection, setActiveSection] = useState<'overview' | 'features' | 'due-diligence' | 'pilot'>('overview');
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-slate-900 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-800 overflow-hidden animate-fadeIn text-white">
         
         {/* Header */}
-        <div className="bg-slate-900 text-white px-6 py-4 flex justify-between items-center border-b border-slate-800">
+        <div className="bg-slate-950 px-6 py-4 flex justify-between items-center border-b border-slate-800">
           <div className="flex items-center space-x-3">
             <div className="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-              <BookOpen className="w-5 h-5" />
+              <Building2 className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
                 <h3 className="text-base font-bold text-white">
-                  BhumiSwasthya User Guide & Tutorial
+                  BhumiBinimoy (ভূমি বিনিময়) • Assam Land Exchange Guide
                 </h3>
                 <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-semibold">
-                  NESFIC-D-50
+                  NESFIC-D-52
                 </span>
               </div>
               <p className="text-xs text-slate-400">
-                How automated land record health scanning protects citizens and revenue officials
+                Government-Verified Cadastral Marketplace for Buying and Selling Land
               </p>
             </div>
           </div>
@@ -63,333 +64,170 @@ export const TutorialModal: React.FC<TutorialModalProps> = ({
           </button>
         </div>
 
-        {/* Tab Navigation inside Modal */}
-        <div className="bg-slate-100 px-6 py-2 border-b border-slate-200 flex space-x-2 text-xs font-semibold overflow-x-auto">
-          <button
-            onClick={() => setActiveSection('overview')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              activeSection === 'overview' 
-                ? 'bg-white text-slate-900 shadow-xs' 
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            1. Problem & What It Does
-          </button>
-          <button
-            onClick={() => setActiveSection('features')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              activeSection === 'features' 
-                ? 'bg-white text-slate-900 shadow-xs' 
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            2. Key Portals & How to Use
-          </button>
-          <button
-            onClick={() => setActiveSection('scoring')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              activeSection === 'scoring' 
-                ? 'bg-white text-slate-900 shadow-xs' 
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            3. Health Score (0-100) Explained
-          </button>
-          <button
-            onClick={() => setActiveSection('walkthrough')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              activeSection === 'walkthrough' 
-                ? 'bg-white text-slate-900 shadow-xs' 
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            4. Quick 4-Step Interactive Tour
-          </button>
+        {/* Navigation Tabs */}
+        <div className="flex border-b border-slate-800 px-6 bg-slate-900/60 text-xs">
+          {[
+            { id: 'overview', label: '1. Problem & Vision' },
+            { id: 'features', label: '2. Core Marketplace Capabilities' },
+            { id: 'due-diligence', label: '3. 8-Point Due-Diligence' },
+            { id: 'pilot', label: '4. Dispur Pilot & Revenue Model' }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveSection(tab.id as any)}
+              className={`py-3 px-4 font-semibold border-b-2 transition-all ${
+                activeSection === tab.id
+                  ? 'border-emerald-500 text-emerald-400'
+                  : 'border-transparent text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        {/* Modal Body */}
-        <div className="p-6 overflow-y-auto space-y-6 text-xs text-slate-700 flex-1">
+        {/* Content Body */}
+        <div className="p-6 overflow-y-auto space-y-4 text-xs leading-relaxed text-slate-300">
           
-          {/* Section 1: Overview */}
           {activeSection === 'overview' && (
             <div className="space-y-4">
-              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-emerald-950">
-                <h4 className="font-bold text-sm text-emerald-900 flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  The Core Challenge (NESFIC-D-50)
-                </h4>
-                <p className="mt-1 text-xs text-emerald-900/90 leading-relaxed">
-                  Assam has a large volume of digitised land records created over several years across two core state systems:
-                  <strong> Dharitree</strong> (Textual Jamabandi / Record of Rights) and <strong>Bhudakshya</strong> (Cadastral GIS Maps).
-                  Historically, errors such as missing area, zero revenue, fractional share imbalances, and cadastral map overlaps were only discovered <em>reactively</em> when a citizen applied for a sale NOC, mortgage, or partition—causing severe delays and disputes.
-                </p>
-              </div>
-
-              <div>
-                <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider mb-2">
-                  What BhumiSwasthya Does
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-                    <span className="font-bold text-slate-900 text-xs flex items-center gap-1.5">
-                      <Scale className="w-3.5 h-3.5 text-emerald-600" />
-                      Proactive Anomaly Auditing
-                    </span>
-                    <p className="text-[11px] text-slate-600">
-                      Continuously runs 7 deterministic legal & mathematical rules comparing textual Jamabandis against spatial cadastral geometries without waiting for a citizen application.
-                    </p>
-                  </div>
-
-                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-                    <span className="font-bold text-slate-900 text-xs flex items-center gap-1.5">
-                      <Layers className="w-3.5 h-3.5 text-blue-600" />
-                      Cadastral GIS Reconciliation
-                    </span>
-                    <p className="text-[11px] text-slate-600">
-                      Converts Assam traditional units (Bigha, Katha, Lesa) to square meters and detects when cadastral polygon boundaries drift from recorded paper area by &gt;5%.
-                    </p>
-                  </div>
-
-                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-                    <span className="font-bold text-slate-900 text-xs flex items-center gap-1.5">
-                      <ClipboardList className="w-3.5 h-3.5 text-amber-600" />
-                      Prioritized Field Dispatch
-                    </span>
-                    <p className="text-[11px] text-slate-600">
-                      Auto-generates ground survey tasks for Lat Mandals and Kanungos for parcels flagged with boundary conflicts, adverse possession, or tribal belt violations.
-                    </p>
-                  </div>
-
-                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-                    <span className="font-bold text-slate-900 text-xs flex items-center gap-1.5">
-                      <UserCheck className="w-3.5 h-3.5 text-purple-600" />
-                      Citizen Self-Check & Peace of Mind
-                    </span>
-                    <p className="text-[11px] text-slate-600">
-                      Allows citizens to check their land health card before taking loans or initiating sale deeds, with a 1-click pathway to proactive correction under Mission Basundhara.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-[11px] text-amber-900">
-                <strong>Mandatory Government Safeguard:</strong> BhumiSwasthya is an advisory decision-support system. It <em>never</em> automatically modifies a land record or alters legal title. All corrections require human Lat Mandal survey and Circle Officer order.
-              </div>
-            </div>
-          )}
-
-          {/* Section 2: Features & How to Use */}
-          {activeSection === 'features' && (
-            <div className="space-y-4">
-              <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-                How to Navigate & Use the Portals
-              </h4>
-
-              <div className="space-y-3">
-                <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-start justify-between gap-4">
-                  <div className="space-y-1">
-                    <div className="font-bold text-slate-900 text-xs flex items-center gap-2">
-                      <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px]">1</span>
-                      Executive Analytics Dashboard
-                    </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Designed for Circle Officers, Deputy Commissioners, and Department Leadership. View district-level health grade distributions (Grade A through D), filter anomalies by rule type (e.g., Spatial Mismatches, Zero Revenue, Chapter X violations), and export audit rolls to CSV.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => { onClose(); onNavigateTab('dashboard'); }}
-                    className="shrink-0 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-[11px] font-semibold"
-                  >
-                    Open Dashboard
-                  </button>
-                </div>
-
-                <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-start justify-between gap-4">
-                  <div className="space-y-1">
-                    <div className="font-bold text-slate-900 text-xs flex items-center gap-2">
-                      <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px]">2</span>
-                      Cadastral GIS Map Viewer
-                    </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Displays digitized parcel polygons rendered over real geography. Green indicates clean parcels, yellow/orange indicates minor drift, and red with dashed outlines highlights critical boundary conflicts and overlaps (e.g. Dag 103 overlapping Dag 104 in Jatia). Click any parcel to inspect.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => { onClose(); onNavigateTab('gis-map'); }}
-                    className="shrink-0 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-[11px] font-semibold"
-                  >
-                    Open GIS Map
-                  </button>
-                </div>
-
-                <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-start justify-between gap-4">
-                  <div className="space-y-1">
-                    <div className="font-bold text-slate-900 text-xs flex items-center gap-2">
-                      <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px]">3</span>
-                      Lat Mandal Field Queue
-                    </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Mobile-responsive interface for field staff (Lat Mandals & Kanungos). Shows assigned inspection targets, permits recording ground-measured Bigha-Katha-Lesa, boundary pillar condition, GPS lock, and geo-tagged photos to submit formal survey recommendations to the Circle Officer.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => { onClose(); onNavigateTab('field-verification'); }}
-                    className="shrink-0 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-[11px] font-semibold"
-                  >
-                    Open Field Queue
-                  </button>
-                </div>
-
-                <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-start justify-between gap-4">
-                  <div className="space-y-1">
-                    <div className="font-bold text-slate-900 text-xs flex items-center gap-2">
-                      <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px]">4</span>
-                      Citizen Self-Check Portal
-                    </div>
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
-                      Public-facing transparency portal. Citizens search by village and Dag/Patta number, view their Land Health Score, verify if their land is ready for instant mutation, print official health certificates, or file proactive rectification requests.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => { onClose(); onNavigateTab('citizen-portal'); }}
-                    className="shrink-0 px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-[11px] font-semibold"
-                  >
-                    Open Citizen Check
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Section 3: Scoring Model */}
-          {activeSection === 'scoring' && (
-            <div className="space-y-4">
-              <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-                Land Health Scoring Matrix (0–100 Scale)
-              </h4>
-              <p className="text-[11px] text-slate-600">
-                Every parcel begins with a base score of 100 points. Penalties are deducted based on rule violation severity:
+              <h4 className="text-sm font-bold text-white">The Challenge (NESFIC-D-52): Opaque Broker Networks vs. Verified Land Exchange</h4>
+              <p>
+                Citizens buying or selling land in Assam currently depend on informal private brokers and multiple disconnected government portals (<em>Dharitree</em>, <em>Bhudakshya</em>, <em>e-Panjeeyan</em>, <em>e-Khajana</em>) to verify title, boundaries, and land revenue status.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-bold text-emerald-900 text-xs">Grade A (85 – 100)</span>
-                    <span className="text-[10px] font-bold bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded">CLEAN</span>
-                  </div>
-                  <p className="text-[11px] text-emerald-800">
-                    High data integrity. No spatial overlap, no share deficit, area variance &lt;5%, valid revenue assessment. Eligible for straight-through automated digital transactions.
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                <div className="p-4 bg-red-950/20 border border-red-800/40 rounded-xl space-y-1">
+                  <h5 className="font-bold text-red-300">Current Broker-Driven Market</h5>
+                  <ul className="list-disc list-inside space-y-1 text-red-200/80 text-[11px]">
+                    <li>Information asymmetry and hidden title defects.</li>
+                    <li>Extortionate 5% to 10% private broker commissions.</li>
+                    <li>Speculative, inflated prices disconnected from Zonal rates.</li>
+                    <li>45 to 90 days manual physical searches across offices.</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-emerald-950/20 border border-emerald-800/40 rounded-xl space-y-1">
+                  <h5 className="font-bold text-emerald-300">BhumiBinimoy Solution</h5>
+                  <ul className="list-disc list-inside space-y-1 text-emerald-200/80 text-[11px]">
+                    <li>Interactive Cadastral GIS map with verified boundaries.</li>
+                    <li>0% private broker cut; 0.25% Govt facilitation fee.</li>
+                    <li>Transparent comparison against official Zonal Rates.</li>
+                    <li>Instantaneous 8-point automated title reconciliation.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeSection === 'features' && (
+            <div className="space-y-3">
+              <h4 className="text-sm font-bold text-white">4 Primary Platform Modules</h4>
+              
+              <div className="space-y-2.5">
+                <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800 space-y-1">
+                  <span className="font-bold text-emerald-400">1. Cadastral Map Marketplace Explorer</span>
+                  <p className="text-[11px] text-slate-400">
+                    Buyers can navigate the official cadastral map of Assam, click on verified polygons, and inspect authenticated Dag and Patta records in real time.
                   </p>
                 </div>
 
-                <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-bold text-amber-900 text-xs">Grade B (65 – 84)</span>
-                    <span className="text-[10px] font-bold bg-amber-200 text-amber-900 px-2 py-0.5 rounded">MINOR RISK</span>
-                  </div>
-                  <p className="text-[11px] text-amber-800">
-                    Minor clerical or metadata gaps (e.g. unverified Aadhaar KYC or 5–10% spatial drift). Reconcilable through administrative desk review without field dispatch.
+                <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800 space-y-1">
+                  <span className="font-bold text-teal-400">2. Buyer Due-Diligence & Deal Room</span>
+                  <p className="text-[11px] text-slate-400">
+                    Enforces strict separation between Government-verified official particulars and self-reported seller representations. Displays Zonal Value benchmark and statutory fee calculator.
                   </p>
                 </div>
 
-                <div className="p-3.5 bg-orange-50 border border-orange-200 rounded-xl">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-bold text-orange-900 text-xs">Grade C (40 – 64)</span>
-                    <span className="text-[10px] font-bold bg-orange-200 text-orange-900 px-2 py-0.5 rounded">MODERATE RISK</span>
-                  </div>
-                  <p className="text-[11px] text-orange-800">
-                    Substantial textual discrepancies, missing heir shares (sum &lt; 100%), unassessed ₹0 touzi revenue, or unredeemed legacy bank hypothecation notes.
+                <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800 space-y-1">
+                  <span className="font-bold text-amber-400">3. Voluntary Seller Onboarding Portal</span>
+                  <p className="text-[11px] text-slate-400">
+                    Lawful landowners authenticate via Aadhaar e-KYC, query Dharitree to fetch official Jamabandi records, set asking prices, and sign a voluntary consent declaration.
                   </p>
                 </div>
 
-                <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-xl">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-bold text-rose-900 text-xs">Grade D (&lt; 40)</span>
-                    <span className="text-[10px] font-bold bg-rose-200 text-rose-900 px-2 py-0.5 rounded">CRITICAL RISK</span>
-                  </div>
-                  <p className="text-[11px] text-rose-800">
-                    Severe spatial overlap with adjacent dags, private patta on Village Grazing Reserve (VGR), or Chapter X Tribal Belt non-protected holding. Triggers mandatory Lat Mandal ground survey.
+                <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800 space-y-1">
+                  <span className="font-bold text-blue-400">4. Assisted Conveyancing Pipeline</span>
+                  <p className="text-[11px] text-slate-400">
+                    Streamlines the transaction through 5 milestones: EOI Agreement ➔ Milestone Escrow ➔ Circle Officer Sale NOC ➔ e-Panjeeyan Deed ➔ Mission Basundhara Auto-Mutation.
                   </p>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Section 4: Quick Interactive Walkthrough */}
-          {activeSection === 'walkthrough' && (
-            <div className="space-y-4">
-              <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-                Try Out These 4 Live Scenarios In The App
-              </h4>
+          {activeSection === 'due-diligence' && (
+            <div className="space-y-3">
+              <h4 className="text-sm font-bold text-white">8-Point Statutory Due-Diligence Framework</h4>
+              <p className="text-slate-400 text-[11px]">
+                Every parcel listed on the exchange is cross-checked against 8 statutory dimensions under the <em>Assam Land and Revenue Regulation 1886</em>:
+              </p>
 
-              <div className="space-y-2.5">
-                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex justify-between items-center">
-                  <div>
-                    <span className="font-bold text-slate-900 text-xs">Scenario A: Check a Healthy Record (Dag 101, Jatia)</span>
-                    <p className="text-[11px] text-slate-500">Score 100/100 • Clean spatial match • Full Aadhaar KYC • Verified Touzi</p>
-                  </div>
-                  <button
-                    onClick={() => { onClose(); onNavigateTab('citizen-portal'); }}
-                    className="px-3 py-1 bg-emerald-600 text-white rounded text-[11px] font-semibold"
-                  >
-                    Inspect Dag 101
-                  </button>
+              <div className="grid grid-cols-2 gap-2 text-[11px]">
+                <div className="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+                  <strong className="text-emerald-400 block">1. Patta Tenure:</strong>
+                  <span>Periodic Patta (Khiraj Myadi) alienability confirmed.</span>
                 </div>
+                <div className="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+                  <strong className="text-emerald-400 block">2. Area Variance:</strong>
+                  <span>Bhudakshya polygon and Jamabandi match within 5%.</span>
+                </div>
+                <div className="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+                  <strong className="text-emerald-400 block">3. Share Balance:</strong>
+                  <span>Co-sharer Pattadar fractional shares equal 100%.</span>
+                </div>
+                <div className="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+                  <strong className="text-emerald-400 block">4. e-Khajana Revenue:</strong>
+                  <span>Zero outstanding land revenue or local cess arrears.</span>
+                </div>
+                <div className="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+                  <strong className="text-emerald-400 block">5. Encumbrance Search:</strong>
+                  <span>Zero active bank mortgages or financial attachments.</span>
+                </div>
+                <div className="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+                  <strong className="text-emerald-400 block">6. Litigation Check:</strong>
+                  <span>Zero pending civil injunctions or revenue stay orders.</span>
+                </div>
+                <div className="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+                  <strong className="text-emerald-400 block">7. Chapter X Safeguards:</strong>
+                  <span>Protection of backward classes in Tribal Belts/Blocks.</span>
+                </div>
+                <div className="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+                  <strong className="text-emerald-400 block">8. Ecological Buffers:</strong>
+                  <span>Zero overlap with Village Grazing Reserves (VGR/PGR).</span>
+                </div>
+              </div>
+            </div>
+          )}
 
-                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex justify-between items-center">
-                  <div>
-                    <span className="font-bold text-slate-900 text-xs">Scenario B: Area Mismatch & Lat Mandal Dispatch (Dag 102)</span>
-                    <p className="text-[11px] text-slate-500">19.6% shortfall between Jamabandi and Bhudakshya polygon • Assigned to field</p>
-                  </div>
-                  <button
-                    onClick={() => { onClose(); onNavigateTab('field-verification'); }}
-                    className="px-3 py-1 bg-amber-600 text-white rounded text-[11px] font-semibold"
-                  >
-                    View Field Task
-                  </button>
-                </div>
+          {activeSection === 'pilot' && (
+            <div className="space-y-3">
+              <h4 className="text-sm font-bold text-white">Dispur Pilot & Economic Sustainability</h4>
+              <p>
+                The initial 6-month pilot is launched in <strong>Dispur Revenue Circle</strong> (Kamrup Metropolitan District), where cadastral mapping and Jamabandi digitization are 100% complete.
+              </p>
 
-                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex justify-between items-center">
-                  <div>
-                    <span className="font-bold text-slate-900 text-xs">Scenario C: Boundary Overlap on GIS Map (Dag 103 & 104)</span>
-                    <p className="text-[11px] text-slate-500">Watch the two parcels overlap with red dashed conflict borders in Jatia</p>
-                  </div>
-                  <button
-                    onClick={() => { onClose(); onNavigateTab('gis-map'); }}
-                    className="px-3 py-1 bg-rose-600 text-white rounded text-[11px] font-semibold"
-                  >
-                    View Map Overlap
-                  </button>
-                </div>
-
-                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex justify-between items-center">
-                  <div>
-                    <span className="font-bold text-slate-900 text-xs">Scenario D: Chapter X Tribal Belt Transfer Flag (Dag 310, Sonapur)</span>
-                    <p className="text-[11px] text-slate-500">Non-tribal holding in notified Dimoria tribal belt • Circle Officer legal inquiry</p>
-                  </div>
-                  <button
-                    onClick={() => { onClose(); onNavigateTab('dashboard'); }}
-                    className="px-3 py-1 bg-purple-600 text-white rounded text-[11px] font-semibold"
-                  >
-                    View in Audit Table
-                  </button>
-                </div>
+              <div className="p-4 bg-purple-950/20 border border-purple-800/40 rounded-xl space-y-2">
+                <span className="font-bold text-purple-300 block">Government Facilitation Fee (Policy Option)</span>
+                <p className="text-[11px] text-purple-200/80 leading-relaxed">
+                  In lieu of unregulated 5% private broker cuts, the State can levy a modest <strong>0.25% to 0.50% statutory facilitation fee</strong>. In Kamrup Metro alone, this projects to generate <strong>₹7.5 to ₹15 Crore in annual non-tax revenue</strong> for the Revenue Department, fully self-funding platform operations.
+                </p>
               </div>
             </div>
           )}
 
         </div>
 
-        {/* Modal Footer */}
-        <div className="bg-slate-50 px-6 py-3 border-t border-slate-200 flex justify-between items-center">
+        {/* Footer */}
+        <div className="bg-slate-950 px-6 py-3 border-t border-slate-800 flex items-center justify-between">
           <span className="text-[11px] text-slate-500">
-            Assam Innovation & Startup Foundation (AISF) • NESFIC 2026
+            Assam Innovation & Startup Foundation • NESFIC 2026
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold shadow-xs transition-all"
+            className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs"
           >
-            Got It, Close Guide
+            Explore Platform
           </button>
         </div>
 

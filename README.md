@@ -1,66 +1,66 @@
-# BhumiSwasthya (ভূমি স্বাস্থ্য)
-### Automated Land Records Health-Check & Cadastral Anomaly Detection System
+# Assam Land Exchange • BhumiBinimoy (ভূমি বিনিময়)
+### Government-Verified Cadastral Marketplace for Buying and Selling Land
 
 [![Live Demo](https://img.shields.io/badge/Live_Prototype-bhumi--swasthya.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://bhumi-swasthya.pages.dev/)
 [![Government of Assam](https://img.shields.io/badge/Government_of_Assam-Revenue_%26_Disaster_Management-064e3b?style=for-the-badge)](https://landrecords.assam.gov.in/)
-[![Challenge ID](https://img.shields.io/badge/NESFIC_2026-Stream_1_--_NESFIC--D--50-0284c7?style=for-the-badge)](https://startup.assam.gov.in/)
+[![Challenge ID](https://img.shields.io/badge/NESFIC_2026-Stream_1_--_NESFIC--D--52-0284c7?style=for-the-badge)](https://startup.assam.gov.in/nesfic26/problem-statements/nesfic-d-52)
 [![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://bhumi-swasthya.pages.dev/)
 [![React 18](https://img.shields.io/badge/Frontend-React_18_%7C_TypeScript_%7C_Tailwind-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![Leaflet GIS](https://img.shields.io/badge/Geospatial-Leaflet_%7C_PostGIS-199900?style=for-the-badge&logo=leaflet)](https://leafletjs.com/)
 
 > 🌐 **Live Interactive Prototype:** **[https://bhumi-swasthya.pages.dev/](https://bhumi-swasthya.pages.dev/)**  
-> Explore executive analytics, live cadastral map inspector with polygon overlays, Lat Mandal field verification queue, citizen land health certificate generator, and the **Super Admin Command Console (`#admin`)**.
+> Explore the Cadastral Marketplace Explorer, Buyer Due-Diligence Deal Room, Voluntary Landowner Listing Wizard, Assisted 5-Stage Conveyancing Pipeline, and the Revenue Department Super Admin Console.
 
 ---
 
 ## 🏛️ Executive Summary
 
-**BhumiSwasthya** is a proactive, automated land health-check and cadastral anomaly detection platform developed for the **Revenue & Disaster Management Department, Government of Assam** under **NESFIC-D-50 (Stream 1)**.
+**BhumiBinimoy (Assam Land Exchange)** is an interactive, cadastral-map-based digital marketplace and assisted conveyancing engine developed for the **Revenue & Disaster Management Department, Government of Assam** under **NESFIC-D-52 (Stream 1 — Government Track)**.
 
-Traditional land administration is **reactive**: errors in textual Jamabandi records and cadastral maps remain unnoticed until a citizen applies for a Land Sale NOC, Bank Mortgage, or Inheritance Mutation, resulting in sudden transaction freezes, protracted litigation, and citizen distress.
+Traditional land commerce in Assam is constrained by extreme opacity, speculative broker pricing, and fragmented record verification across *Dharitree*, *Bhudakshya*, *e-Panjeeyan*, and *e-Khajana*. Prospective buyers cannot easily verify whether a plot has clear title, while genuine landowners lack a government-backed platform to voluntarily sell land without losing 5% to 10% to informal intermediaries.
 
-**BhumiSwasthya inverts this paradigm** into continuous, proactive assurance:
-1. **Automated Continuous Audit:** Continuously scans textual **Dharitree** Record of Rights (RoRs) against **Bhudakshya** cadastral GIS boundary vectors while records are at rest.
-2. **7 Statutory Consistency Dimensions:** Flags spatial overlaps, BKL area variances, unclosed boundaries, share deficits, zero-Touzi revenue dags, and Chapter X tribal belt violations.
-3. **Composite Land Health Score (LHS 0–100):** Triages parcels into 4 actionable risk tiers (Grade A Clean to Grade D Critical).
-4. **Targeted Lat Mandal PWA:** Auto-dispatches field survey work-orders with sub-meter RTK GNSS coordinate locking and offline SQLite synchronization.
-5. **Citizen Self-Check Portal:** Issues tamper-proof, verifiable digital Land Health Certificates with cryptographic SHA-256 QR tokens, enabling **pre-emptive 72-hour fast-track mutations** under **Mission Basundhara 3.0**.
-6. **Super Admin Command Console:** Real-time algorithmic calibration of statutory discrepancy tolerances, officer & Lat Mandal provisioning, dual-system ingestion telemetry, and immutable SHA-256 audit trails.
+**BhumiBinimoy transforms this paradigm into a trusted, state-facilitated exchange:**
+1. **Cadastral Map Marketplace:** Lawful Pattadars voluntarily list parcels overlaid as interactive vector polygons on Assam’s official cadastral maps (*Bhudakshya*).
+2. **Strict Demarcation of Truth:** Clear distinction between **Government-Verified Official Records** (immutable Dag/Patta, BKL area, Touzi demand, liens, Chapter X tribal status) and **Seller Representations** (asking price, highlights, road width, amenities).
+3. **8-Point Title Due-Diligence Engine:** Instant algorithmic reconciliation yielding a composite Title Score (0–100) and badges (*Gold Verified*, *Silver Verified*, *Conditional Transfer*, *Restricted*).
+4. **Transparent Price Discovery:** Benchmarks asking prices against gazetted Circle-level **Zonal Valuation Rates** ($₹/\text{Bigha}$) and calculates transparent statutory stamp duty (6%) and registration fees (2%).
+5. **Assisted Conveyancing State Machine:** Guides parties through Expression of Interest (EOI), milestone escrow token deposit, automated pre-filled Circle Officer Sale NOC application, and Sub-Registrar biometric booking (*e-Panjeeyan*) leading to *Mission Basundhara 3.0* auto-mutation.
+6. **State Facilitation Revenue:** Establishes an optional statutory facilitation fee (0.25%–0.50%), projecting **₹7.5 to ₹15 Crore in annual non-tax revenue** for the State during the Dispur pilot alone.
 
 ---
 
-## 📸 Technological Architecture & Visual Evidence
+## 📸 Architectural Visualizations & Evidentiary Diagrams
 
-### 1. Paradigm Shift: Reactive Bottleneck vs. Proactive Assurance
+### 1. Paradigm Shift: Fragmented Broker Market vs. Assam Land Exchange
 ![Paradigm Shift](assets/proposal_images/diagram_1_before_after_workflow.jpg)
 
-### 2. Dual-System Cross-Reconciliation (Dharitree & Bhudakshya)
-![Dual-System Reconciliation](assets/proposal_images/diagram_2_dual_system_reconciliation.jpg)
+### 2. Integrated Data Ecosystem (Dharitree, Bhudakshya, e-Panjeeyan, e-Khajana)
+![Integrated Data Ecosystem](assets/proposal_images/diagram_2_dual_system_reconciliation.jpg)
 
-### 3. 5-Vector Cadastral Anomaly Diagnostic Matrix
-![Cadastral Anomaly Catalog](assets/proposal_images/diagram_3_cadastral_anomaly_catalog.jpg)
+### 3. Assisted Conveyancing State Machine (5-Stage Transaction Pipeline)
+![Assisted Conveyancing](assets/proposal_images/diagram_3_cadastral_anomaly_catalog.jpg)
 
-### 4. Composite Land Health Score (LHS) Architecture
-![LHS Architecture](assets/proposal_images/diagram_4_land_health_score_hierarchy.jpg)
+### 4. 8-Point Statutory Due-Diligence & Verification Badge Hierarchy
+![Due-Diligence Matrix](assets/proposal_images/diagram_4_land_health_score_hierarchy.jpg)
 
-### 5. Lat Mandal Field Inspection PWA & Ground-Truthing
-![Lat Mandal PWA](assets/proposal_images/diagram_5_lat_mandal_mobile_app.jpg)
+### 5. Transparent Price Discovery & Zonal Value Benchmarking Engine
+![Price Discovery](assets/proposal_images/diagram_5_lat_mandal_mobile_app.jpg)
 
-### 6. Citizen Land Record Health Certificate & Portal
-![Citizen Health Certificate](assets/proposal_images/diagram_6_citizen_land_health_certificate.jpg)
+### 6. Dispur Circle Pilot & ASDC Enterprise System Architecture
+![Enterprise System Architecture](assets/proposal_images/diagram_6_citizen_land_health_certificate.jpg)
 
-### 7. State Data Centre (ASDC) Enterprise Production Architecture
-![Enterprise System Architecture](assets/proposal_images/diagram_7_enterprise_system_architecture.jpg)
+### 7. Economic Sustainability & State Facilitation Revenue Model
+![Economic Model](assets/proposal_images/diagram_7_enterprise_system_architecture.jpg)
 
 ---
 
 ## 💻 Tech Stack & Infrastructure
 
 - **Web Frontend:** React 18, TypeScript, Tailwind CSS, Lucide Icons, Vite
-- **WebGIS Engine:** Leaflet 1.9.4, GeoJSON/TopoJSON vector renderers, Dual-Mode Leaflet & SVG Cadastral Sheet Viewer
-- **Geospatial & Anomaly Core:** Python 3.13, PostGIS 3.4, Shapely, GEOS, Assam BKL Engine ($1\text{ Bigha} = 5\text{ Katha} = 100\text{ Lesa} \approx 1337.8\text{ m}^2$)
-- **Cloud & Edge Hosting:** Cloudflare Pages (SPA redirects, edge headers, asset optimization)
-- **State Data Centre Target:** Kubernetes, Kafka, Redis, PostgreSQL 16 + PostGIS, NIC e-Pramaan OAuth2
+- **WebGIS Engine:** Leaflet 1.9.4, GeoJSON vector renderers, CartoDB Positron / OSM tiles
+- **Geospatial & Calculation Core:** PostGIS 3.4, Assam Standard BKL Engine ($1\text{ Bigha} = 5\text{ Katha} = 100\text{ Lesa} \approx 1337.8038\text{ m}^2$)
+- **Edge Deployment:** Cloudflare Pages (Instant edge CDN, SPA client-side routing)
+- **Target Government Environment:** Assam State Data Centre (ASDC), Kubernetes (K8s), PostgreSQL 16 + PostGIS, Redis 7.2, NIC e-Pramaan OAuth2
 
 ---
 
@@ -69,17 +69,14 @@ Traditional land administration is **reactive**: errors in textual Jamabandi rec
 ### Prerequisites
 - Node.js 18+ or 20+
 - npm or pnpm
+- Python 3.10+ (for PDF & Diagram generation scripts)
 
 ### Local Development
 ```bash
-# 1. Clone repository
-git clone https://github.com/RonHatibaruah/bhumi-swasthya.git
-cd bhumi-swasthya
-
-# 2. Install dependencies
+# 1. Install dependencies
 npm install
 
-# 3. Start development server
+# 2. Start development server
 npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
@@ -88,44 +85,33 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ```bash
 npm run build
 ```
-Production assets will be built to the `dist/` directory.
+Compiled production assets are output to `dist/`.
+
+### Generate Official Submission PDFs & Form Text Files
+```bash
+# Render all architectural diagrams
+python3 generate_diagrams.py
+
+# Generate publication-grade PDFs
+python3 generate_pdfs.py
+
+# Generate plain-text form submission versions
+python3 generate_text_versions.py
+```
+
+Generated deliverables:
+- `NESFIC_D52_Proposal_Ron_Hatibaruah.pdf`
+- `NESFIC_D52_Proof_of_Work_Ron_Hatibaruah.pdf`
+- `NESFIC_D52_Proposal_Ron_Hatibaruah.txt`
+- `NESFIC_D52_Proof_of_Work_Ron_Hatibaruah.txt`
 
 ---
 
-## ☁️ Cloudflare Pages Deployment
+## 🏛️ Sponsoring Department & Competition Track
 
-This project is pre-configured for instant deployment on **Cloudflare Pages**:
-- **Framework Preset:** Vite
-- **Build Command:** `npm run build`
-- **Build Output Directory:** `dist`
-- **Configuration Files:** `wrangler.toml`, `public/_redirects`, `public/_headers`
-
-See [CLOUDFLARE_DEPLOYMENT.md](CLOUDFLARE_DEPLOYMENT.md) for step-by-step dashboard and CLI deployment instructions.
-
----
-
-## 📄 Official Submission Documents & Text Versions
-
-- **Proposal Document (PDF):** [NESFIC_D50_Proposal_Ron_Hatibaruah.pdf](NESFIC_D50_Proposal_Ron_Hatibaruah.pdf) (12 Fields • 1.40 MB)
-- **Proof of Work & Solution Evidence Dossier (PDF):** [NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.pdf](NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.pdf) (7 Pages • 2.75 MB)
-- **Proposal Plain Text (Copy-Paste Ready):** [NESFIC_D50_Proposal_Ron_Hatibaruah.txt](NESFIC_D50_Proposal_Ron_Hatibaruah.txt) (Clean text formatted for online portal form textareas)
-- **Proof of Work Plain Text (Copy-Paste Ready):** [NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.txt](NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.txt) (Complete plain-text dossier with aligned ASCII tables)
-- **Proposal Markdown Contents:** [proposal_contents.md](proposal_contents.md)
-- **Proof of Work Markdown Dossier:** [proof_of_work_dossier.md](proof_of_work_dossier.md)
-
----
-
-## 👤 Applicant Attribution & Lead
-
-- **Lead Innovator & Solutions Architect:** **Ron Hatibaruah**
-- **Email / Inquiries:** [ron.hatibaruah@gmail.com](mailto:ron.hatibaruah@gmail.com)
-- **Challenge ID:** NESFIC-D-50 (Stream 1)
-- **Platform:** North East Startup Festival & Innovation Conclave (NESFIC 2026) / Assam Innovation & Startup Foundation (AISF)
-- **Challenge Owner:** Revenue & Disaster Management Department, Government of Assam
-
----
-
-## ⚖️ License & Disclaimers
-
-Copyright © 2026 Ron Hatibaruah. All rights reserved.  
-*BhumiSwasthya provides strictly non-invasive advisory health scores and diagnostic flags for government decision support. It does not perform automated mutation or alteration of legal land titles.*
+- **Challenge Track:** NESFIC 2026 (Stream 1 — Government Track)
+- **Problem Statement ID:** **NESFIC-D-52**
+- **Challenge Title:** *Assam Land Exchange: Government-Verified Marketplace for Buying and Selling Land*
+- **Sponsoring Department:** Revenue & Disaster Management Department, Government of Assam
+- **Organizer:** Assam Innovation & Startup Foundation (AISF), Dept. of Innovation, Incubation & Startups, Govt. of Assam
+- **Lead Applicant:** Ron Hatibaruah

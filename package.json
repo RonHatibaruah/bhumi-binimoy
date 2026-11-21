@@ -1,7 +1,8 @@
 {
-  "name": "bhumi-swasthya",
+  "name": "assam-land-exchange",
   "private": true,
   "version": "1.0.0",
+  "description": "Assam Land Exchange (BhumiBinimoy) - Government-Verified Marketplace for Buying and Selling Land (NESFIC-D-52)",
   "type": "module",
   "scripts": {
     "dev": "vite",

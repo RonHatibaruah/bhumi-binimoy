@@ -1,15 +1,26 @@
 import React from 'react';
-import { ShieldCheck, Map, ClipboardList, UserCheck, Activity, Building2, BookOpen, Sliders } from 'lucide-react';
+import { 
+  Building2, 
+  Map, 
+  SearchCheck, 
+  PlusCircle, 
+  ArrowRightLeft, 
+  ShieldCheck, 
+  HelpCircle,
+  TrendingUp,
+  FileBadge
+} from 'lucide-react';
+import { LandMarketplaceListing } from '../types/landRecords';
+import { formatINR } from '../services/marketplaceEngine';
 
-export type ActiveTab = 'dashboard' | 'gis-map' | 'field-verification' | 'citizen-portal' | 'admin';
+export type ActiveTab = 'marketplace' | 'deal-room' | 'seller-portal' | 'workflow-tracker' | 'admin-console';
 
 interface NavbarProps {
   activeTab: ActiveTab;
   setActiveTab: (tab: ActiveTab) => void;
   selectedCircle: string;
   setSelectedCircle: (circle: string) => void;
-  totalRecords: number;
-  criticalCount: number;
+  listings: LandMarketplaceListing[];
   onOpenTutorial: () => void;
 }
 
@@ -18,174 +29,166 @@ export const Navbar: React.FC<NavbarProps> = ({
   setActiveTab,
   selectedCircle,
   setSelectedCircle,
-  totalRecords,
-  criticalCount,
+  listings,
   onOpenTutorial
 }) => {
+  const verifiedCount = listings.filter(l => l.governmentVerified.titleClearanceBadge === 'GOLD_VERIFIED').length;
+  const totalValuation = listings.reduce((sum, l) => sum + l.sellerRepresentations.askingPriceINR, 0);
+
   return (
     <header className="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50 shadow-md">
       {/* Top Government Banner */}
       <div className="bg-slate-950 px-4 py-1.5 text-xs text-slate-300 flex flex-wrap justify-between items-center border-b border-slate-800">
         <div className="flex items-center space-x-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span className="font-medium text-slate-200">Government of Assam</span>
+          <span className="font-semibold text-slate-200">Government of Assam</span>
           <span className="text-slate-500">•</span>
           <span>Revenue & Disaster Management Department</span>
           <span className="text-slate-500">•</span>
-          <span className="text-amber-400 font-semibold">NESFIC-D-50 Pilot Solution</span>
+          <span className="text-amber-400 font-semibold">NESFIC-D-52 Pilot Solution</span>
         </div>
         <div className="flex items-center space-x-4">
-          <span className="text-slate-400">Dharitree & Bhudakshya Active Sync</span>
-          <span className="bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono">
-            {totalRecords} Parcels Audited
+          <span className="text-slate-400 hidden sm:inline">Dharitree • Bhudakshya • e-Panjeeyan • e-Khajana</span>
+          <span className="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono">
+            {listings.length} Active Listings ({verifiedCount} Gold Verified)
           </span>
-          {criticalCount > 0 && (
-            <span className="bg-red-950 text-red-300 border border-red-800 px-2 py-0.5 rounded text-[11px] font-semibold animate-pulse">
-              {criticalCount} Critical Flags
-            </span>
-          )}
+          <span className="bg-slate-800 text-slate-300 px-2 py-0.5 rounded text-[11px] font-mono hidden md:inline">
+            Marketplace Volume: {formatINR(totalValuation)}
+          </span>
         </div>
       </div>
 
-      {/* Main App Navigation */}
+      {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           
-          {/* Logo & Title */}
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-900/30">
-              <ShieldCheck className="w-6 h-6 text-white" />
+          {/* Logo & Platform Title */}
+          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab('marketplace')}>
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-900/30">
+              <Building2 className="w-6 h-6 text-white" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
                 <h1 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-                  BhumiSwasthya <span className="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-normal">ভূমি স্বাস্থ্য</span>
+                  BhumiBinimoy <span className="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-normal">ভূমি বিনিময়</span>
                 </h1>
               </div>
-              <p className="text-xs text-slate-400">
-                Automated Land Record Health-Check & Anomaly Detection Engine
+              <p className="text-xs text-slate-400 font-medium">
+                Assam Land Exchange • Government-Verified Cadastral Marketplace
               </p>
             </div>
           </div>
 
-          {/* Navigation Controls, Role Switcher & Tutorial Link */}
+          {/* Action Tabs */}
           <div className="flex flex-wrap items-center gap-2">
-            
-            {/* Tutorial Link / Button */}
-            <a
-              href="#tutorial"
-              onClick={(e) => {
-                e.preventDefault();
-                onOpenTutorial();
-              }}
-              className="flex items-center space-x-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-xs transition-all ring-1 ring-emerald-400/30"
-              title="Learn what this app does, how to use it, and view the system architecture guide"
-              aria-label="Open Interactive Tutorial & System Guide"
+            <button
+              onClick={() => setActiveTab('marketplace')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
+                activeTab === 'marketplace'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-900/20'
+                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
+              }`}
             >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Tutorial & Guide</span>
-            </a>
+              <Map className="w-4 h-4 text-emerald-400" />
+              <span>Cadastral Marketplace</span>
+            </button>
 
-            {/* Circle Filter */}
-            <div className="flex items-center space-x-1.5 bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700 text-xs">
-              <Building2 className="w-3.5 h-3.5 text-slate-400" />
-              <select
-                value={selectedCircle}
-                onChange={(e) => setSelectedCircle(e.target.value)}
-                className="bg-transparent text-slate-200 text-xs focus:outline-none cursor-pointer pr-1"
-                aria-label="Filter records by Assam Revenue Circle"
-                title="Select Assam Revenue Circle"
-              >
-                <option value="ALL" className="bg-slate-900">All Revenue Circles</option>
-                <option value="Dispur" className="bg-slate-900">Dispur (Kamrup Metro)</option>
-                <option value="Sonapur" className="bg-slate-900">Sonapur (Tribal Belt)</option>
-                <option value="Kaliabor" className="bg-slate-900">Kaliabor (Nagaon)</option>
-              </select>
+            <button
+              onClick={() => setActiveTab('deal-room')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
+                activeTab === 'deal-room'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-900/20'
+                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
+              }`}
+            >
+              <SearchCheck className="w-4 h-4 text-teal-400" />
+              <span>Buyer Deal Room</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('seller-portal')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
+                activeTab === 'seller-portal'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-900/20'
+                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
+              }`}
+            >
+              <PlusCircle className="w-4 h-4 text-amber-400" />
+              <span>Sell Land</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('workflow-tracker')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
+                activeTab === 'workflow-tracker'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-900/20'
+                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
+              }`}
+            >
+              <ArrowRightLeft className="w-4 h-4 text-blue-400" />
+              <span>Assisted Pipeline</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('admin-console')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
+                activeTab === 'admin-console'
+                  ? 'bg-purple-600 text-white shadow-md shadow-purple-900/20'
+                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
+              }`}
+            >
+              <ShieldCheck className="w-4 h-4 text-purple-400" />
+              <span>Dept Console</span>
+            </button>
+
+            {/* Tutorial Button */}
+            <button
+              onClick={onOpenTutorial}
+              title="Platform Guide & Architecture Walkthrough"
+              className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+            >
+              <HelpCircle className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Circle Filter Bar */}
+        <div className="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-xs">
+          <div className="flex items-center space-x-2">
+            <span className="text-slate-400">Target Pilot Circle:</span>
+            <div className="flex items-center space-x-1">
+              {['ALL', 'Dispur', 'Guwahati', 'Sonapur', 'North Guwahati'].map(circle => (
+                <button
+                  key={circle}
+                  onClick={() => setSelectedCircle(circle)}
+                  className={`px-2.5 py-1 rounded text-[11px] font-medium transition-colors ${
+                    selectedCircle === circle
+                      ? 'bg-emerald-500 text-slate-950 font-bold'
+                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  }`}
+                >
+                  {circle === 'ALL' ? 'All Circles' : `${circle} Circle`}
+                </button>
+              ))}
             </div>
-
-            {/* Tab Links - SEO and GEO Friendly */}
-            <nav className="inline-flex rounded-lg bg-slate-800 p-1 border border-slate-700" aria-label="Main Application Views">
-              <a
-                href="#dashboard"
-                onClick={(e) => { e.preventDefault(); setActiveTab('dashboard'); }}
-                title="Executive Analytics & Cadastral Health Register Dashboard (Assam Revenue Circles)"
-                aria-label="View Executive Analytics Dashboard"
-                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
-                  activeTab === 'dashboard'
-                    ? 'bg-emerald-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
-                }`}
-              >
-                <Activity className="w-3.5 h-3.5" />
-                <span>Executive Analytics</span>
-              </a>
-
-              <a
-                href="#gis-map"
-                onClick={(e) => { e.preventDefault(); setActiveTab('gis-map'); }}
-                title="Cadastral WebGIS Parcel Inspector & Overlap Conflict Viewer (Bhudakshya & Satellite)"
-                aria-label="View Cadastral WebGIS Parcel Map"
-                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
-                  activeTab === 'gis-map'
-                    ? 'bg-emerald-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
-                }`}
-              >
-                <Map className="w-3.5 h-3.5" />
-                <span>Cadastral GIS Map</span>
-              </a>
-
-              <a
-                href="#field-verification"
-                onClick={(e) => { e.preventDefault(); setActiveTab('field-verification'); }}
-                title="Lat Mandal Field Verification Queue & Offline Ground-Truthing Roster"
-                aria-label="View Lat Mandal Field Queue"
-                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
-                  activeTab === 'field-verification'
-                    ? 'bg-emerald-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
-                }`}
-              >
-                <ClipboardList className="w-3.5 h-3.5" />
-                <span>Field Mandal Queue</span>
-              </a>
-
-              <a
-                href="#citizen-portal"
-                onClick={(e) => { e.preventDefault(); setActiveTab('citizen-portal'); }}
-                title="Citizen Land Health Card Self-Check Portal & Pre-Emptive Mutation Fast-Track"
-                aria-label="View Citizen Land Health Portal"
-                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
-                  activeTab === 'citizen-portal'
-                    ? 'bg-amber-600 text-white shadow-sm'
-                    : 'text-amber-300/80 hover:text-amber-200 hover:bg-slate-700/60'
-                }`}
-              >
-                <UserCheck className="w-3.5 h-3.5" />
-                <span>Citizen Self-Check</span>
-              </a>
-
-              <a
-                href="#admin"
-                onClick={(e) => { e.preventDefault(); setActiveTab('admin'); }}
-                title="Super Admin Command Console: Rule Engine Calibration, Officer Roster, Data Sentry & Audit Trail"
-                aria-label="View Super Admin Command Console"
-                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
-                  activeTab === 'admin'
-                    ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-sm ring-1 ring-amber-400/50'
-                    : 'text-amber-300/90 hover:text-white hover:bg-slate-700/60'
-                }`}
-              >
-                <Sliders className="w-3.5 h-3.5" />
-                <span>Admin Command</span>
-              </a>
-            </nav>
-
           </div>
 
+          <div className="hidden lg:flex items-center space-x-3 text-slate-400 text-[11px]">
+            <span className="flex items-center gap-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+              Gold Verified (Clean Title)
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+              Conditional (Co-Sharer / Dues)
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+              Chapter X Tribal Belt
+            </span>
+          </div>
         </div>
       </div>
     </header>
   );
 };
-
