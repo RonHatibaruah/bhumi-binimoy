@@ -51,14 +51,20 @@ def add_header(ax, title, subtitle, tag="NESFIC-D-52 TECH FRAMEWORK"):
     ax.add_patch(gov_badge)
     ax.text(0.875, 0.931, "GOVT OF ASSAM • R&DM", ha='center', va='center', fontsize=7, fontweight='bold', color='#e2e8f0', zorder=4)
 
-def save_dual(fig, basename):
+def save_dual(fig, basename, alias_name=None):
     plt.tight_layout()
     png_path = os.path.join(out_dir, f"{basename}.png")
     jpg_path = os.path.join(out_dir, f"{basename}.jpg")
     plt.savefig(png_path, dpi=200, bbox_inches='tight')
     plt.savefig(jpg_path, dpi=200, bbox_inches='tight')
+    if alias_name:
+        import shutil
+        shutil.copyfile(png_path, os.path.join(out_dir, f"{alias_name}.png"))
+        shutil.copyfile(jpg_path, os.path.join(out_dir, f"{alias_name}.jpg"))
+        print(f"Rendered {basename} & {alias_name}")
+    else:
+        print(f"Rendered {basename}.png & .jpg")
     plt.close()
-    print(f"Rendered {basename}.png & .jpg")
 
 # ==============================================================================
 # DIAGRAM 1: 16:9 Widescreen Paradigm Shift Transformation Framework
@@ -118,7 +124,7 @@ def create_widescreen_diagram_1():
         ax.text(0.56, y + 0.045, head, fontsize=8.5, fontweight='bold', color='#065f46', zorder=4)
         ax.text(0.56, y - 0.010, desc, fontsize=8, color='#064e3b', linespacing=1.2, zorder=4)
 
-    save_dual(fig, "diagram_1_before_after_workflow")
+    save_dual(fig, "diagram_1_before_after_workflow", "infographic_01_paradigm_shift")
 
 # ==============================================================================
 # DIAGRAM 2: 16:9 Dual-Core Synchronous Integration Engine
@@ -203,7 +209,7 @@ def create_widescreen_diagram_2():
         ax.text(0.72, y + 0.018, head, fontsize=8, fontweight='bold', color='#581c87', zorder=4)
         ax.text(0.72, y - 0.012, sub, fontsize=7, color='#475569', zorder=4)
 
-    save_dual(fig, "diagram_2_dual_system_reconciliation")
+    save_dual(fig, "diagram_2_dual_system_reconciliation", "infographic_02_govtech_federation")
 
 # ==============================================================================
 # DIAGRAM 3: Assisted Conveyancing State Machine (5-Stage Lifecycle)
@@ -244,7 +250,7 @@ def create_widescreen_diagram_3():
     ax.text(0.5, 0.105, "OPERATIONAL OUTCOME: Transaction cycle compressed from 180 days to <30 days. Citizen saves 5%-10% in avoided broker commissions. Zero post-sale litigation.",
             ha='center', va='center', fontsize=9, fontweight='bold', color='#34d399', zorder=3)
 
-    save_dual(fig, "diagram_3_cadastral_anomaly_catalog")
+    save_dual(fig, "diagram_3_cadastral_anomaly_catalog", "infographic_03_conveyancing_state_machine")
 
 # ==============================================================================
 # DIAGRAM 4: 8-Point Due-Diligence Ledger & Title Clearance Badge Hierarchy
@@ -298,7 +304,7 @@ def create_widescreen_diagram_4():
         ax.text(x + 0.105, 0.115, badge, ha='center', va='center', fontsize=9, fontweight='bold', color=text_c, zorder=3)
         ax.text(x + 0.105, 0.08, sub, ha='center', va='center', fontsize=7.5, color='#f1f5f9', zorder=3)
 
-    save_dual(fig, "diagram_4_land_health_score_hierarchy")
+    save_dual(fig, "diagram_4_land_health_score_hierarchy", "infographic_04_due_diligence_matrix")
 
 # ==============================================================================
 # DIAGRAM 5: Transparent Price Discovery & Zonal Value Benchmarking
@@ -336,7 +342,7 @@ def create_widescreen_diagram_5():
     ax.text(0.5, 0.095, "Agreed Price: Rs. 1.45 Cr  |  Assam Stamp Duty (6%): Rs. 8.70 Lakh  |  Registration (2%): Rs. 2.90 Lakh  |  Govt Facilitation (0.25%): Rs. 36,250  |  Broker Cut: Rs. 0 (Saved Rs. 7.25 Lakh)",
             ha='center', va='center', fontsize=8, color='#f1f5f9', zorder=3)
 
-    save_dual(fig, "diagram_5_lat_mandal_mobile_app")
+    save_dual(fig, "diagram_5_lat_mandal_mobile_app", "infographic_05_price_discovery_zonal")
 
 # ==============================================================================
 # DIAGRAM 6: Dispur Circle Pilot & Enterprise Cloud Architecture
@@ -369,7 +375,7 @@ def create_widescreen_diagram_6():
         ax.text(0.5, y + 0.085, title, ha='center', va='center', fontsize=9.5, fontweight='bold', color=text_color, zorder=3)
         ax.text(0.5, y + 0.04, desc, ha='center', va='center', fontsize=8, color=sub_color, zorder=3)
 
-    save_dual(fig, "diagram_6_citizen_land_health_certificate")
+    save_dual(fig, "diagram_6_citizen_land_health_certificate", "infographic_06_asdc_cloud_architecture")
 
 # ==============================================================================
 # DIAGRAM 7: Economic Sustainability & State Facilitation Revenue Model
@@ -406,7 +412,7 @@ def create_widescreen_diagram_7():
     ax.text(0.5, 0.11, "Citizens gain 100% verified legal security and save 5%-10% in private commissions.\nThe Government of Assam secures a dedicated, legitimate non-tax facilitation revenue stream of Rs. 15Cr - Rs. 45Cr annually.",
             ha='center', va='center', fontsize=8, color='#f1f5f9', linespacing=1.3, zorder=3)
 
-    save_dual(fig, "diagram_7_enterprise_system_architecture")
+    save_dual(fig, "diagram_7_enterprise_system_architecture", "infographic_07_economic_revenue_model")
 
 if __name__ == '__main__':
     create_widescreen_diagram_1()

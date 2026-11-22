@@ -242,6 +242,16 @@ def parse_markdown_content(raw_lines, available_width=490):
 
     return flowables
 
+def add_figure(story, img_filename, caption_text, width=490, height=275.6, caption_style=None):
+    img_path = os.path.join(img_dir, img_filename)
+    if os.path.exists(img_path):
+        story.append(Spacer(1, 4))
+        story.append(Image(img_path, width=width, height=height))
+        story.append(Spacer(1, 2))
+        if caption_text and caption_style:
+            story.append(safe_paragraph(caption_text, caption_style))
+        story.append(Spacer(1, 6))
+
 def build_proposal_pdf(output_path):
     doc = SimpleDocTemplate(
         output_path, pagesize=letter, leftMargin=54, rightMargin=54, topMargin=54, bottomMargin=54
@@ -262,6 +272,11 @@ def build_proposal_pdf(output_path):
     field_title_style = ParagraphStyle(
         'FieldTitle', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=11, leading=15,
         textColor=colors.HexColor('#064e3b'), spaceBefore=8, spaceAfter=4, keepWithNext=True
+    )
+    caption_style = ParagraphStyle(
+        'FigCaption', parent=styles['Normal'], fontName='Helvetica-Oblique',
+        fontSize=7.2, leading=9.5, textColor=colors.HexColor('#334155'),
+        alignment=1, spaceAfter=4
     )
 
     story = []
@@ -295,37 +310,42 @@ def build_proposal_pdf(output_path):
         story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#059669'), spaceBefore=8, spaceAfter=5))
         story.append(safe_paragraph(f"Field {sec_header}", field_title_style))
 
-        # Embed appropriate diagram
+        # Embed appropriate figures
         if '1: Problem understanding' in sec_header:
-            img = os.path.join(img_dir, 'diagram_1_before_after_workflow.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=265))
-                story.append(Spacer(1, 5))
+            add_figure(story, 'infographic_01_paradigm_shift.jpg',
+                       "<b>Figure 1.1: Paradigm Shift Framework</b> — Transformation from Unregulated Broker Cartels to BhumiBinimoy Government-Verified Exchange.",
+                       caption_style=caption_style)
         elif '2: Proposed solution' in sec_header:
-            img = os.path.join(img_dir, 'diagram_3_cadastral_anomaly_catalog.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=265))
-                story.append(Spacer(1, 5))
+            add_figure(story, 'ui_01_cadastral_webgis.jpg',
+                       "<b>Prototype View 2.1: Cadastral WebGIS Multi-Layer Explorer</b> — Georeferenced Dag polygons, 500m survey grid, and Gold Verified title attributes in Dispur Circle.",
+                       caption_style=caption_style)
+            add_figure(story, 'infographic_04_due_diligence_matrix.jpg',
+                       "<b>Figure 2.2: 8-Point Statutory Due-Diligence Engine & Verification Badge Matrix</b> under Assam Land & Revenue Regulation (ALRR) 1886.",
+                       caption_style=caption_style)
+            add_figure(story, 'ui_02_buyer_deal_room.jpg',
+                       "<b>Prototype View 2.3: Buyer Deal Room & Strict Separation of Truth</b> — Immutable Government Records side-by-side with Seller Representations and Escrow EOI panel.",
+                       caption_style=caption_style)
         elif '3: Technology architecture' in sec_header:
-            img = os.path.join(img_dir, 'diagram_2_dual_system_reconciliation.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=265))
-                story.append(Spacer(1, 5))
+            add_figure(story, 'infographic_02_govtech_federation.jpg',
+                       "<b>Figure 3.1: 5 Revenue Pillars Federation Engine</b> — Bi-directional synchrony across Dharitree, Bhudakshya, e-Panjeeyan, Zonal Valuation DB, and e-Khajana.",
+                       caption_style=caption_style)
+            add_figure(story, 'infographic_06_asdc_cloud_architecture.jpg',
+                       "<b>Figure 3.2: ASDC Tier-III Enterprise Cloud Topology & Zero-Trust Security Perimeter</b>.",
+                       caption_style=caption_style)
         elif '4: Pilot proposal' in sec_header:
-            img = os.path.join(img_dir, 'diagram_6_citizen_land_health_certificate.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=265))
-                story.append(Spacer(1, 5))
+            add_figure(story, 'infographic_07_economic_revenue_model.jpg',
+                       "<b>Figure 4.1: Economic Sustainability & State Facilitation Revenue Model</b> (₹7.5 Cr Dispur Pilot to ₹45+ Cr Statewide Expansion).",
+                       caption_style=caption_style)
+            add_figure(story, 'ui_04_conveyancing_pipeline.jpg',
+                       "<b>Prototype View 4.2: 5-Stage Assisted Conveyancing Pipeline</b> — Pre-filled Circle Land Sale NOC, 30-day statutory objection window, and SRO deed booking.",
+                       caption_style=caption_style)
         elif '5: Team capabilities' in sec_header:
-            img = os.path.join(img_dir, 'diagram_7_enterprise_system_architecture.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=265))
-                story.append(Spacer(1, 5))
+            add_figure(story, 'ui_05_admin_console.jpg',
+                       "<b>Prototype View 5.1: Revenue Circle Officer Management Console</b> — Listing moderation queue, Zonal Rate editor, dispute telemetry, and SHA-256 audit ledger.",
+                       caption_style=caption_style)
+            add_figure(story, 'infographic_03_conveyancing_state_machine.jpg',
+                       "<b>Figure 5.2: Assisted Conveyancing State Machine</b> — Compressing 180-day transaction cycles to <30 days with automated Mission Basundhara 3.0 mutation.",
+                       caption_style=caption_style)
 
         body_flowables = parse_markdown_content(lines[1:], available_width=490)
         story.extend(body_flowables)
@@ -353,6 +373,12 @@ def build_proof_of_work_pdf(output_path):
     h2_style = ParagraphStyle(
         'H2Style', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=11, leading=15,
         textColor=colors.HexColor('#064e3b'), spaceBefore=8, spaceAfter=4, keepWithNext=True
+    )
+
+    caption_style = ParagraphStyle(
+        'FigCaption', parent=styles['Normal'], fontName='Helvetica-Oblique',
+        fontSize=7.2, leading=9.5, textColor=colors.HexColor('#334155'),
+        alignment=1, spaceAfter=4
     )
 
     story = []
@@ -390,29 +416,51 @@ def build_proof_of_work_pdf(output_path):
         story.append(safe_paragraph(sec_title, h2_style))
 
         if '1. Executive Summary' in sec_title:
-            img = os.path.join(img_dir, 'diagram_1_before_after_workflow.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=265))
-                story.append(Spacer(1, 5))
+            add_figure(story, 'ui_01_cadastral_webgis.jpg',
+                       "<b>Proof of Work View 1.1: Live Cadastral WebGIS Multi-Layer Explorer</b> at https://bhumi-binimoy.pages.dev/.",
+                       caption_style=caption_style)
+            add_figure(story, 'infographic_01_paradigm_shift.jpg',
+                       "<b>Figure 1.2: Comparative Analysis</b> — Fragmented Broker Network vs. BhumiBinimoy Government-Verified Exchange.",
+                       caption_style=caption_style)
         elif '2. Live System Architecture' in sec_title:
-            img = os.path.join(img_dir, 'diagram_2_dual_system_reconciliation.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=265))
-                story.append(Spacer(1, 5))
+            add_figure(story, 'infographic_02_govtech_federation.jpg',
+                       "<b>Figure 2.1: 5-Pillar GovTech Integration Architecture & BKL Normalization Core</b>.",
+                       caption_style=caption_style)
+            add_figure(story, 'infographic_06_asdc_cloud_architecture.jpg',
+                       "<b>Figure 2.2: ASDC Tier-III Enterprise Zero-Trust Cloud Topology & Security Pipeline</b>.",
+                       caption_style=caption_style)
+        elif '3. Data Schemas & Separation of Truth' in sec_title:
+            add_figure(story, 'ui_02_buyer_deal_room.jpg',
+                       "<b>Proof of Work View 3.1: Buyer Deal Room</b> — Enforcing Strict Demarcation between Official Records and Seller Claims.",
+                       caption_style=caption_style)
+            add_figure(story, 'infographic_05_price_discovery_zonal.jpg',
+                       "<b>Figure 3.2: Transparent Price Discovery & Zonal Value Benchmarking Engine</b> (Dispur 1.5 Bigha Acquisition Schedule).",
+                       caption_style=caption_style)
         elif '4. 8-Point Title Due-Diligence' in sec_title:
-            img = os.path.join(img_dir, 'diagram_4_land_health_score_hierarchy.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=265))
-                story.append(Spacer(1, 5))
+            add_figure(story, 'infographic_04_due_diligence_matrix.jpg',
+                       "<b>Figure 4.1: 8-Point Statutory Due-Diligence Matrix & Point Weight Distribution</b> under ALRR 1886.",
+                       caption_style=caption_style)
+            add_figure(story, 'ui_03_seller_portal.jpg',
+                       "<b>Proof of Work View 4.2: Landowner Voluntary Listing Portal</b> — Aadhaar e-KYC and Automated Dharitree Jamabandi RoR Extraction.",
+                       caption_style=caption_style)
         elif '5. Assisted Conveyancing' in sec_title:
-            img = os.path.join(img_dir, 'diagram_3_cadastral_anomaly_catalog.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=265))
-                story.append(Spacer(1, 5))
+            add_figure(story, 'infographic_03_conveyancing_state_machine.jpg',
+                       "<b>Figure 5.1: 5-Stage Transaction Pipeline Lifecycle & Milestone Verification</b>.",
+                       caption_style=caption_style)
+            add_figure(story, 'ui_04_conveyancing_pipeline.jpg',
+                       "<b>Proof of Work View 5.2: Assisted Conveyancing Tracker</b> — Pre-filled Circle NOC Application and Cyber-Treasury Token Escrow.",
+                       caption_style=caption_style)
+        elif '6. Performance Benchmarks' in sec_title:
+            add_figure(story, 'ui_05_admin_console.jpg',
+                       "<b>Proof of Work View 6.1: Revenue Circle Officer ASDC Command Console & Immutable SHA-256 Audit Ledger</b>.",
+                       caption_style=caption_style)
+            add_figure(story, 'infographic_07_economic_revenue_model.jpg',
+                       "<b>Figure 6.2: 3-Phase State Facilitation Non-Tax Revenue Projections</b> (0.25% Transaction Model).",
+                       caption_style=caption_style)
+        elif '7. Security, Privacy' in sec_title:
+            add_figure(story, 'ui_06_tutorial_modal.jpg',
+                       "<b>Proof of Work View 7.1: Interactive Platform Tutorial & Citizen Guided Onboarding Modal</b>.",
+                       caption_style=caption_style)
 
         body_flowables = parse_markdown_content(lines[1:], available_width=490)
         story.extend(body_flowables)
