@@ -4,7 +4,9 @@
 **Submission Category:** NESFIC 2026 (Stream 1 — Government Track)  
 **Problem Statement ID:** **NESFIC-D-52**  
 **Challenge Owners:** Revenue & Disaster Management Department, Government of Assam  
-**Lead Innovator & Applicant:** Ron Hatibaruah  
+**Lead Innovator & Applicant:** Abhishek Satyam  
+**Organization / Entity:** RazorNext Software Pvt Ltd  
+**Copyright:** © 2026 RazorNext Software Pvt Ltd. All rights reserved.  
 **Live Working Prototype:** `https://bhumi-binimoy.pages.dev/`  
 **GitHub Repository:** `https://github.com/RonHatibaruah/bhumi-binimoy`  
 **Document Type:** Empirical Proof of Work (PoW), Architecture Validation, Data Schemas & Performance Benchmarks  

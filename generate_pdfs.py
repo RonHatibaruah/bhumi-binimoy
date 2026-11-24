@@ -37,7 +37,7 @@ class NumberedCanvas(canvas.Canvas):
         # Header (pages after page 1)
         if self._pageNumber > 1:
             self.drawString(54, letter[1] - 36, "Government of Assam • Revenue & Disaster Management Department • NESFIC-D-52")
-            self.drawRightString(letter[0] - 54, letter[1] - 36, "BhumiBinimoy (Assam Land Exchange) — Ron Hatibaruah")
+            self.drawRightString(letter[0] - 54, letter[1] - 36, "BhumiBinimoy (Assam Land Exchange) — Abhishek Satyam")
             self.setStrokeColor(colors.HexColor("#cbd5e1"))
             self.setLineWidth(0.5)
             self.line(54, letter[1] - 42, letter[0] - 54, letter[1] - 42)
@@ -46,7 +46,7 @@ class NumberedCanvas(canvas.Canvas):
         self.setStrokeColor(colors.HexColor("#cbd5e1"))
         self.setLineWidth(0.5)
         self.line(54, 45, letter[0] - 54, 45)
-        self.drawString(54, 32, "NESFIC 2026 Proposal • Problem NESFIC-D-52 • Applicant: Ron Hatibaruah")
+        self.drawString(54, 32, "NESFIC 2026 • Problem NESFIC-D-52 • Lead Applicant: Abhishek Satyam (RazorNext Software)")
         self.drawRightString(letter[0] - 54, 32, f"Page {self._pageNumber} of {page_count}")
         self.restoreState()
 
@@ -286,7 +286,7 @@ def build_proposal_pdf(output_path):
 
     meta_data = [
         [safe_paragraph("<b>Problem Statement ID:</b> NESFIC-D-52 (Stream 1)", meta_style), safe_paragraph("<b>Challenge Owner:</b> Rev. & Disaster Mgmt Dept, Assam", meta_style)],
-        [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Platform:</b> Assam Startup (AISF) NESFIC 2026", meta_style)],
+        [safe_paragraph("<b>Lead Applicant:</b> Abhishek Satyam (RazorNext Software Pvt Ltd)", meta_style), safe_paragraph("<b>Platform:</b> Assam Startup (AISF) NESFIC 2026", meta_style)],
         [safe_paragraph("<b>Live Demo:</b> https://bhumi-binimoy.pages.dev/", meta_style), safe_paragraph("<b>Status:</b> Working Prototype Verified", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[240, 264])
@@ -388,7 +388,7 @@ def build_proof_of_work_pdf(output_path):
 
     meta_data = [
         [safe_paragraph("<b>Challenge ID:</b> NESFIC-D-52 (Stream 1)", meta_style), safe_paragraph("<b>Department:</b> Rev. & Disaster Mgmt, Assam", meta_style)],
-        [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Format:</b> Solution Evidence (PDF < 10 MB)", meta_style)],
+        [safe_paragraph("<b>Lead Applicant:</b> Abhishek Satyam (RazorNext Software Pvt Ltd)", meta_style), safe_paragraph("<b>Format:</b> Solution Evidence (PDF < 10 MB)", meta_style)],
         [safe_paragraph("<b>Live Prototype:</b> https://bhumi-binimoy.pages.dev/", meta_style), safe_paragraph("<b>Verification Status:</b> Fully Built & Tested", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[240, 264])
@@ -469,8 +469,15 @@ def build_proof_of_work_pdf(output_path):
     print(f"Generated {output_path}")
 
 if __name__ == '__main__':
-    proposal_pdf = os.path.join(base_dir, 'NESFIC_D52_Proposal_Ron_Hatibaruah.pdf')
-    pow_pdf = os.path.join(base_dir, 'NESFIC_D52_Proof_of_Work_Ron_Hatibaruah.pdf')
+    proposal_pdf = os.path.join(base_dir, 'NESFIC_D52_Proposal_Abhishek_Satyam.pdf')
+    pow_pdf = os.path.join(base_dir, 'NESFIC_D52_Proof_of_Work_Abhishek_Satyam.pdf')
     
     build_proposal_pdf(proposal_pdf)
     build_proof_of_work_pdf(pow_pdf)
+
+    # Also keep sync with legacy name if referenced
+    legacy_prop = os.path.join(base_dir, 'NESFIC_D52_Proposal_Ron_Hatibaruah.pdf')
+    legacy_pow = os.path.join(base_dir, 'NESFIC_D52_Proof_of_Work_Ron_Hatibaruah.pdf')
+    import shutil
+    shutil.copy2(proposal_pdf, legacy_prop)
+    shutil.copy2(pow_pdf, legacy_pow)

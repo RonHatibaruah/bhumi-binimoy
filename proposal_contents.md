@@ -2,7 +2,9 @@
 
 **Problem Statement:** NESFIC-D-52 (Stream 1 — Government Track) — *Assam Land Exchange: Government-Verified Marketplace for Buying and Selling Land*  
 **Challenge Owners:** Revenue & Disaster Management Department, Government of Assam  
-**Applicant / Innovator:** Ron Hatibaruah  
+**Lead Applicant / Innovator:** Abhishek Satyam  
+**Organization / Entity:** RazorNext Software Pvt Ltd  
+**Copyright:** © 2026 RazorNext Software Pvt Ltd. All rights reserved.  
 **Application Platform:** Assam Startup Portal (NESFIC 2026)  
 **Proposed Solution Name:** BhumiBinimoy (ভূমি বিনিময়) — Assam Land Exchange (ALE)  
 **Live Working Prototype:** `https://bhumi-binimoy.pages.dev/`  
@@ -109,8 +111,8 @@ To validate the platform under demanding, high-volume conditions, a 6-month init
 ## Field 5: Team capabilities, commercialization & sustainability
 *(Word Count: 259 words / Limit: 300 words)*
 
-### Lead Applicant & Technical Capability: Ron Hatibaruah
-• Domain Expertise: Full-stack GovTech architect and software engineer with deep specialization in geospatial platforms, PostGIS spatial algorithms, secure cloud architectures, and digital public infrastructure.  
+### Lead Applicant & Technical Capability: Abhishek Satyam (RazorNext Software Pvt Ltd)
+• Domain Expertise: Full-stack GovTech architect and software engineer with deep specialization in geospatial platforms, PostGIS spatial algorithms, secure cloud architectures, and digital public infrastructure at RazorNext Software Pvt Ltd.  
 • Contextual Mastery: Comprehensive command of Assam's statutory land framework, including the Assam Land and Revenue Regulation (ALRR) 1886, Chapter X Tribal Belt/Block protections, BKL unit arithmetic (1 Bigha = 5 Katha = 100 Lesa = 1,337.80 sq. m), and state digital platforms (Dharitree, Bhudakshya, e-Panjeeyan, and Mission Basundhara).  
 • Execution Track Record: Demonstrated ability to design, build, and deploy production-grade WebGIS applications, automated compliance engines, and secure microservices. Supported by revenue legal advisors and GIS data specialists.  
 

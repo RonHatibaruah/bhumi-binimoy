@@ -3,7 +3,9 @@ NESFIC-D-52 PROPOSAL SUBMISSION — TEXTAREA COMPLIANT COPY-PASTE BLOCKS
 ================================================================================
 Problem Statement: NESFIC-D-52 (Stream 1) — Assam Land Exchange: Government-Verified Marketplace
 Challenge Owners: Revenue & Disaster Management Department, Government of Assam
-Applicant / Innovator: Ron Hatibaruah
+Lead Applicant / Innovator: Abhishek Satyam
+Organization / Entity: RazorNext Software Pvt Ltd
+Copyright: © 2026 RazorNext Software Pvt Ltd. All rights reserved.
 Live Working Prototype: https://bhumi-binimoy.pages.dev/
 GitHub Repository: https://github.com/RonHatibaruah/bhumi-binimoy
 Compliance Status: 100% compliant with Assam Startup USPR character & word limits
@@ -133,12 +135,12 @@ Milestone-Based Grant Budget Utilization (Total: ₹40.00 Lakh)
 ================================================================================
 [COPY-PASTE READY TEXTAREA BLOCK: FIELD 5]
 Field Name: Field 5: Team capabilities, commercialization & sustainability
-Word Count: 259 words (Maximum Allowed: 300 words) | Characters: 1968
+Word Count: 268 words (Maximum Allowed: 300 words) | Characters: 2028
 Validation: PASSED (COMPLIANT)
 --------------------------------------------------------------------------------
 [COPY START - FIELD 5]
-Lead Applicant & Technical Capability: Ron Hatibaruah
-• Domain Expertise: Full-stack GovTech architect and software engineer with deep specialization in geospatial platforms, PostGIS spatial algorithms, secure cloud architectures, and digital public infrastructure.  
+Lead Applicant & Technical Capability: Abhishek Satyam (RazorNext Software Pvt Ltd)
+• Domain Expertise: Full-stack GovTech architect and software engineer with deep specialization in geospatial platforms, PostGIS spatial algorithms, secure cloud architectures, and digital public infrastructure at RazorNext Software Pvt Ltd.  
 • Contextual Mastery: Comprehensive command of Assam's statutory land framework, including the Assam Land and Revenue Regulation (ALRR) 1886, Chapter X Tribal Belt/Block protections, BKL unit arithmetic (1 Bigha = 5 Katha = 100 Lesa = 1,337.80 sq. m), and state digital platforms (Dharitree, Bhudakshya, e-Panjeeyan, and Mission Basundhara).  
 • Execution Track Record: Demonstrated ability to design, build, and deploy production-grade WebGIS applications, automated compliance engines, and secure microservices. Supported by revenue legal advisors and GIS data specialists.  
 

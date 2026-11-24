@@ -1,0 +1,36 @@
+{
+  "name": "Assam Land Exchange (BhumiBinimoy)",
+  "short_name": "BhumiBinimoy",
+  "description": "Government-Verified Marketplace for Buying and Selling Land in Assam anchored on official cadastral maps.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#064e3b",
+  "orientation": "portrait-primary",
+  "lang": "en-IN",
+  "categories": ["government", "productivity", "real_estate"],
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

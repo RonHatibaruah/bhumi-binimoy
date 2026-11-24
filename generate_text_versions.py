@@ -103,7 +103,9 @@ def build_proposal_textarea_file():
     doc.append("=" * 80)
     doc.append("Problem Statement: NESFIC-D-52 (Stream 1) — Assam Land Exchange: Government-Verified Marketplace")
     doc.append("Challenge Owners: Revenue & Disaster Management Department, Government of Assam")
-    doc.append("Applicant / Innovator: Ron Hatibaruah")
+    doc.append("Lead Applicant / Innovator: Abhishek Satyam")
+    doc.append("Organization / Entity: RazorNext Software Pvt Ltd")
+    doc.append("Copyright: © 2026 RazorNext Software Pvt Ltd. All rights reserved.")
     doc.append("Live Working Prototype: https://bhumi-binimoy.pages.dev/")
     doc.append("GitHub Repository: https://github.com/RonHatibaruah/bhumi-binimoy")
     doc.append("Compliance Status: 100% compliant with Assam Startup USPR character & word limits")
@@ -149,7 +151,9 @@ def build_proof_of_work_textarea_file():
     doc.append("BhumiBinimoy (ভূমি বিনিময়): Assam Land Exchange (ALE)")
     doc.append("Problem Statement: NESFIC-D-52 (Stream 1 — Government Track)")
     doc.append("Challenge Owners: Revenue & Disaster Management Department, Government of Assam")
-    doc.append("Lead Innovator & Applicant: Ron Hatibaruah")
+    doc.append("Lead Innovator & Applicant: Abhishek Satyam")
+    doc.append("Organization / Entity: RazorNext Software Pvt Ltd")
+    doc.append("Copyright: © 2026 RazorNext Software Pvt Ltd. All rights reserved.")
     doc.append("Live Working Prototype: https://bhumi-binimoy.pages.dev/")
     doc.append("GitHub Repository: https://github.com/RonHatibaruah/bhumi-binimoy")
     doc.append("=" * 80)
@@ -201,3 +205,14 @@ def build_proof_of_work_textarea_file():
 if __name__ == '__main__':
     build_proposal_textarea_file()
     build_proof_of_work_textarea_file()
+    
+    import shutil
+    shutil.copy2(
+        os.path.join(base_dir, 'NESFIC_D52_Proposal_Ron_Hatibaruah.txt'),
+        os.path.join(base_dir, 'NESFIC_D52_Proposal_Abhishek_Satyam.txt')
+    )
+    shutil.copy2(
+        os.path.join(base_dir, 'NESFIC_D52_Proof_of_Work_Ron_Hatibaruah.txt'),
+        os.path.join(base_dir, 'NESFIC_D52_Proof_of_Work_Abhishek_Satyam.txt')
+    )
+    print("Copied files to Abhishek_Satyam text versions.")

@@ -4,7 +4,9 @@ NESFIC-D-52 PROOF OF WORK & EVIDENCE DOSSIER — TEXTAREA COMPLIANT
 BhumiBinimoy (ভূমি বিনিময়): Assam Land Exchange (ALE)
 Problem Statement: NESFIC-D-52 (Stream 1 — Government Track)
 Challenge Owners: Revenue & Disaster Management Department, Government of Assam
-Lead Innovator & Applicant: Ron Hatibaruah
+Lead Innovator & Applicant: Abhishek Satyam
+Organization / Entity: RazorNext Software Pvt Ltd
+Copyright: © 2026 RazorNext Software Pvt Ltd. All rights reserved.
 Live Working Prototype: https://bhumi-binimoy.pages.dev/
 GitHub Repository: https://github.com/RonHatibaruah/bhumi-binimoy
 ================================================================================
@@ -17,7 +19,7 @@ INSTRUCTIONS:
 
 ================================================================================
 [COPY-PASTE READY TEXTAREA BLOCK: MASTER FULL DOSSIER]
-Total Word Count: 1684 words | Characters: 13209
+Total Word Count: 1701 words | Characters: 13331
 --------------------------------------------------------------------------------
 [COPY START - MASTER PROOF OF WORK DOSSIER]
 Proof of Work & Solution Evidence Dossier
@@ -26,7 +28,9 @@ Government-Verified Cadastral Marketplace for Buying and Selling Land
 Submission Category: NESFIC 2026 (Stream 1 — Government Track)  
 Problem Statement ID: NESFIC-D-52  
 Challenge Owners: Revenue & Disaster Management Department, Government of Assam  
-Lead Innovator & Applicant: Ron Hatibaruah  
+Lead Innovator & Applicant: Abhishek Satyam  
+Organization / Entity: RazorNext Software Pvt Ltd  
+Copyright: © 2026 RazorNext Software Pvt Ltd. All rights reserved.  
 Live Working Prototype: https://bhumi-binimoy.pages.dev/  
 GitHub Repository: https://github.com/RonHatibaruah/bhumi-binimoy  
 Document Type: Empirical Proof of Work (PoW), Architecture Validation, Data Schemas & Performance Benchmarks  

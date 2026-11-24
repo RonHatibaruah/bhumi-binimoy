@@ -99,7 +99,7 @@ export const AdminConsole: React.FC<AdminConsoleProps> = ({ listings, onUpdateLi
       timestamp: '2026-11-21T09:30:15Z',
       action: 'LISTING_STATUS_VERIFIED',
       details: 'Approved voluntary listing ALE-KAM-DIS-001 for public cadastral map publishing',
-      officer: 'Ron Hatibaruah (Circle Officer)',
+      officer: 'Abhishek Satyam (Circle Officer & Lead Architect)',
       hash: '322c114d39c27889208c56ca'
     },
     {

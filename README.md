@@ -117,4 +117,6 @@ Generated deliverables:
 - **Challenge Title:** *Assam Land Exchange: Government-Verified Marketplace for Buying and Selling Land*
 - **Sponsoring Department:** Revenue & Disaster Management Department, Government of Assam
 - **Organizer:** Assam Innovation & Startup Foundation (AISF), Dept. of Innovation, Incubation & Startups, Govt. of Assam
-- **Lead Applicant:** Ron Hatibaruah
+- **Lead Applicant:** Abhishek Satyam
+- **Organization / Entity:** RazorNext Software Pvt Ltd
+- **Copyright:** © 2026 RazorNext Software Pvt Ltd. All rights reserved.

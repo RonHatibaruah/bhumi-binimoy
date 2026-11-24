@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bhumi-binimoy.pages.dev/</loc>
-    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://bhumi-binimoy.pages.dev/" />
+    <xhtml:link rel="alternate" hreflang="as-IN" href="https://bhumi-binimoy.pages.dev/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bhumi-binimoy.pages.dev/" />
+    <lastmod>2026-11-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://bhumi-binimoy.pages.dev/#marketplace</loc>
-    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://bhumi-binimoy.pages.dev/#marketplace" />
+    <xhtml:link rel="alternate" hreflang="as-IN" href="https://bhumi-binimoy.pages.dev/#marketplace" />
+    <lastmod>2026-11-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bhumi-binimoy.pages.dev/#deal-room</loc>
-    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://bhumi-binimoy.pages.dev/#deal-room" />
+    <xhtml:link rel="alternate" hreflang="as-IN" href="https://bhumi-binimoy.pages.dev/#deal-room" />
+    <lastmod>2026-11-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bhumi-binimoy.pages.dev/#seller-portal</loc>
-    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://bhumi-binimoy.pages.dev/#seller-portal" />
+    <xhtml:link rel="alternate" hreflang="as-IN" href="https://bhumi-binimoy.pages.dev/#seller-portal" />
+    <lastmod>2026-11-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://bhumi-binimoy.pages.dev/#pipeline</loc>
-    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://bhumi-binimoy.pages.dev/#pipeline" />
+    <xhtml:link rel="alternate" hreflang="as-IN" href="https://bhumi-binimoy.pages.dev/#pipeline" />
+    <lastmod>2026-11-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://bhumi-binimoy.pages.dev/#department</loc>
-    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://bhumi-binimoy.pages.dev/#department" />
+    <xhtml:link rel="alternate" hreflang="as-IN" href="https://bhumi-binimoy.pages.dev/#department" />
+    <lastmod>2026-11-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>

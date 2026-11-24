@@ -23,7 +23,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
     setTimeout(() => {
       if (email.trim().toLowerCase() === DEMO_EMAIL && password === DEMO_PASS) {
         onLoginSuccess({
-          name: 'Ron Hatibaruah',
+          name: 'Abhishek Satyam',
           designation: 'Circle Officer & System Administrator',
           email: DEMO_EMAIL
         });
@@ -41,7 +41,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
     setIsLoading(true);
     setTimeout(() => {
       onLoginSuccess({
-        name: 'Ron Hatibaruah',
+        name: 'Abhishek Satyam',
         designation: 'Circle Officer & System Administrator',
         email: DEMO_EMAIL
       });
